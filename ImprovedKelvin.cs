@@ -6,6 +6,7 @@ using Sons.StatSystem;
 using UnityEngine;
 using Il2CppSystem.Collections.Generic;
 using System.Linq;
+using Sons.Items.Core;
 
 namespace LifeInTheForest;
 
@@ -18,6 +19,7 @@ public class ImprovedKelvin: MonoBehaviour
     private StatsManager robbyStats;
     private VailController robbyController;
     private StateSet robbyCombatSet;
+    private GameObject robbyWeaponObj;
 
     public void Awake()
     {
@@ -48,6 +50,7 @@ public class ImprovedKelvin: MonoBehaviour
             }
 
             var behaviorToRemove = new System.Collections.Generic.List<string>();
+            // TODO: Nao sei se TODOS os grupos funcionam. Tem que testar melhor.
             behaviorToRemove.Add("Flee Area");
             behaviorToRemove.Add("Run Away, Run To Cover");
             behaviorToRemove.Add("Flee From Enemies");
@@ -56,7 +59,7 @@ public class ImprovedKelvin: MonoBehaviour
             behaviorToRemove.Add("Step Back Cautious");
             behaviorToRemove.Add("Cross Back Away");
             FilterGroups(robbyCombatSet, behaviorToRemove);
-        }
+        }            
     }
 
     private void FilterGroups(StateSet stateSet, System.Collections.Generic.List<string> toRemove)
@@ -87,7 +90,28 @@ public class ImprovedKelvin: MonoBehaviour
             robbyStats._stats[1]._currentValue = 500f; // anger
             robbyStats._stats[4]._currentValue = 100.0f; // stamina
             robbyStats._stats[8]._currentValue = 0f; // fear
+            ChangeVest("add_golden_armor");
+        } else { ChangeVest("rm_golden_armor"); }
+    }
+
+    private void ChangeVest(string name)
+    {
+        switch(name)
+        {
+            case "add_golden_armor":
+                robby.gameObject.transform.Find("VisualRoot/RobbyRig/GEO/GoldenArmor").gameObject.SetActive(value: true);
+                break;
+            case "rm_golden_armor":
+                robby.gameObject.transform.Find("VisualRoot/RobbyRig/GEO/GoldenArmor").gameObject.SetActive(value: false);
+                break;
+            default:
+                break;
         }
+    } 
+
+    private void AddWeapon()
+    {
+       
     }
 }
 

@@ -10,7 +10,6 @@
         "dependencies": {
           "0Harmony": "2.10.1.0",
           "AlternateKelvinVirginiaOutfits": "1.0.0.0",
-          "AlternativeMenu": "1.0.0.0",
           "bolt": "0.4.3.4",
           "Bolt.Unity": "0.0.0.0",
           "bolt.user": "0.0.0.0",
@@ -19,10 +18,6 @@
           "Il2CppInterop.Generator": "1.4.6.0",
           "Il2CppInterop.Runtime": "1.4.6.0",
           "Il2Cppmscorlib": "4.0.0.0",
-          "KelvinCanAttack": "1.0.0.0",
-          "KelvinGPT": "1.0.0.0",
-          "PlaneMod": "1.0.0.0",
-          "RaidCustomizer": "1.0.0.0",
           "RedLoader": "0.8.6.0",
           "Sons.Ai.Utilities": "0.0.0.0",
           "Sons.Ai.Vail": "0.0.0.0",
@@ -107,8 +102,6 @@
           "UnityEngine.VRModule": "0.0.0.0",
           "UnityEngine.WindModule": "0.0.0.0",
           "UnityEngine.XRModule": "0.0.0.0",
-          "VirginiaAlternateHair": "1.0.0.0",
-          "VirginiaCombat": "1.0.0.0",
           "VirginiaStopBeckon": "1.0.0.0"
         },
         "runtime": {
@@ -126,14 +119,6 @@
       "AlternateKelvinVirginiaOutfits/1.0.0.0": {
         "runtime": {
           "AlternateKelvinVirginiaOutfits.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "AlternativeMenu/1.0.0.0": {
-        "runtime": {
-          "AlternativeMenu.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -200,38 +185,6 @@
           "Il2Cppmscorlib.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "KelvinCanAttack/1.0.0.0": {
-        "runtime": {
-          "KelvinCanAttack.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "KelvinGPT/1.0.0.0": {
-        "runtime": {
-          "KelvinGPT.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "PlaneMod/1.0.0.0": {
-        "runtime": {
-          "PlaneMod.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "RaidCustomizer/1.0.0.0": {
-        "runtime": {
-          "RaidCustomizer.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -907,22 +860,6 @@
           }
         }
       },
-      "VirginiaAlternateHair/1.0.0.0": {
-        "runtime": {
-          "VirginiaAlternateHair.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "VirginiaCombat/1.0.0.0": {
-        "runtime": {
-          "VirginiaCombat.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "VirginiaStopBeckon/1.0.0.0": {
         "runtime": {
           "VirginiaStopBeckon.dll": {
@@ -976,46 +913,6 @@
           "MonoMod.Backports.dll": {
             "assemblyVersion": "1.1.2.0",
             "fileVersion": "1.1.2.0"
-          }
-        }
-      },
-      "com.rlabrecque.steamworks.net/0.0.0.0": {
-        "runtime": {
-          "com.rlabrecque.steamworks.net.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Sons.FMOD/0.0.0.0": {
-        "runtime": {
-          "Sons.FMOD.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "FMOD.Unity/0.0.0.0": {
-        "runtime": {
-          "FMOD.Unity.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Sons.Input/0.0.0.0": {
-        "runtime": {
-          "Sons.Input.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Unity.InputSystem/1.3.0.0": {
-        "runtime": {
-          "Unity.InputSystem.dll": {
-            "assemblyVersion": "1.3.0.0",
-            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1099,9 +996,33 @@
           }
         }
       },
+      "Unity.InputSystem/1.3.0.0": {
+        "runtime": {
+          "Unity.InputSystem.dll": {
+            "assemblyVersion": "1.3.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Sons.Input/0.0.0.0": {
+        "runtime": {
+          "Sons.Input.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Sons.Atmosphere/0.0.0.0": {
         "runtime": {
           "Sons.Atmosphere.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "FMOD.Unity/0.0.0.0": {
+        "runtime": {
+          "FMOD.Unity.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -1142,6 +1063,14 @@
       "Endnight.PrefabStore/0.0.0.0": {
         "runtime": {
           "Endnight.PrefabStore.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Sons.FMOD/0.0.0.0": {
+        "runtime": {
+          "Sons.FMOD.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -1190,6 +1119,14 @@
       "Unity.RenderPipelines.Core.Runtime/0.0.0.0": {
         "runtime": {
           "Unity.RenderPipelines.Core.Runtime.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "com.rlabrecque.steamworks.net/0.0.0.0": {
+        "runtime": {
+          "com.rlabrecque.steamworks.net.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -1797,11 +1734,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AlternativeMenu/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "bolt/0.4.3.4": {
       "type": "reference",
       "serviceable": false,
@@ -1838,26 +1770,6 @@
       "sha512": ""
     },
     "Il2Cppmscorlib/4.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "KelvinCanAttack/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "KelvinGPT/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "PlaneMod/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "RaidCustomizer/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2282,16 +2194,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "VirginiaAlternateHair/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "VirginiaCombat/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "VirginiaStopBeckon/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -2323,31 +2225,6 @@
       "sha512": ""
     },
     "MonoMod.Backports/1.1.2.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "com.rlabrecque.steamworks.net/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Sons.FMOD/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "FMOD.Unity/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Sons.Input/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Unity.InputSystem/1.3.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2402,7 +2279,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Unity.InputSystem/1.3.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sons.Input/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Sons.Atmosphere/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FMOD.Unity/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2428,6 +2320,11 @@
       "sha512": ""
     },
     "Endnight.PrefabStore/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sons.FMOD/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2458,6 +2355,11 @@
       "sha512": ""
     },
     "Unity.RenderPipelines.Core.Runtime/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "com.rlabrecque.steamworks.net/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

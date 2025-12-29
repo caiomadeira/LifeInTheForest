@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\LifeInTheForest\\LifeInTheForest.csproj": {}
+    "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\Github\\LifeInTheForest\\LifeInTheForest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\LifeInTheForest\\LifeInTheForest.csproj": {
+    "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\Github\\LifeInTheForest\\LifeInTheForest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\LifeInTheForest\\LifeInTheForest.csproj",
+        "projectUniqueName": "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\Github\\LifeInTheForest\\LifeInTheForest.csproj",
         "projectName": "LifeInTheForest",
-        "projectPath": "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\LifeInTheForest\\LifeInTheForest.csproj",
+        "projectPath": "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\Github\\LifeInTheForest\\LifeInTheForest.csproj",
         "packagesPath": "C:\\Users\\caiom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\LifeInTheForest\\obj\\",
+        "outputPath": "C:\\Users\\caiom\\OneDrive\\Desktop\\sofmod\\Github\\LifeInTheForest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\caiom\\AppData\\Roaming\\NuGet\\NuGet.Config",
