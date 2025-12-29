@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Il2CppInterop.Runtime.InteropTypes;
 using RedLoader.Utils;
 using Sons.Ai.Vail;
 using SonsSdk;
@@ -106,8 +107,14 @@ public class BaseTextureHandler
 
     private Texture2D GetMaterialTexture()
     {
-        return GetMaterialFromTransform(ActorTools.GetPrefab(_actorType), _transformPath, _materialIndex).GetTexture(BaseColorMapId).TryCast<Texture2D>();
+        return ((Il2CppObjectBase)(object)GetMaterialFromTransform(ActorTools.GetPrefab(_actorType), _transformPath, _materialIndex).GetTexture(BaseColorMapId)).TryCast<Texture2D>();
     }
+
+    //private Texture2D GetMaterialTexture()
+    //{
+    //    var texture = GetMaterialFromTransform(ActorTools.GetPrefab(_actorType), _transformPath, _materialIndex).GetTexture(BaseColorMapId);
+    //    return (Texture2D)texture;
+    //}
 
     private Material GetMaterialFromTransform(VailActor actor, string path, int materialIndex)
     {
@@ -140,5 +147,7 @@ public class BaseTextureHandler
         }
     }
 
-    public static void ExportTex(Texture tex, string path) {  }
+    public static void ExportTex(Texture tex, string path)
+    {
+    }
 }

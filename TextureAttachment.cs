@@ -8,9 +8,9 @@ using UnityEngine;
 namespace LifeInTheForest;
 
 [RegisterTypeInIl2Cpp]
-public class TattooAttachment : MonoBehaviour
+public class TextureAttachment : MonoBehaviour
 {
-    public static List<TattooAttachment> Instances = new List<TattooAttachment>();
+    public static List<TextureAttachment> Instances = new List<TextureAttachment>();
 
     public static MelonEvent<VailActor> OnActorAdded = new MelonEvent<VailActor>();
 
@@ -40,6 +40,6 @@ public class TattooAttachment : MonoBehaviour
 
     public static void Attach(VailActorTypeId actorType)
     {
-        ActorTools.GetPrefab(actorType).gameObject.AddComponent<TattooAttachment>();
+        ActorTools.GetPrefab(actorType).gameObject.AddComponent<TextureAttachment>();
     }
 }

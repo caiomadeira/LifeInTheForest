@@ -7,7 +7,6 @@ using TheForest.Utils;
 using UnityEngine;
 using SUI;
 
-
 namespace LifeInTheForest;
 
 public class LifeInTheForest : SonsMod
@@ -52,7 +51,7 @@ public class LifeInTheForest : SonsMod
     public static void UpdateTextureHandlers(bool forceReload = false)
     {
         var handler = new BaseTextureHandler("RobbyHead", VailActorTypeId.Robby, "VisualRoot/RobbyRig/GEO/RobbyHead", 0);
-        handler.SetTexture("RobbyHeadCustom2");
+        handler.SetTexture("RobbyHeadCustom2", true);
         RLog.Msg("Updated texture handlers!!!!!!!!!!");
     }
 
@@ -66,7 +65,7 @@ public class LifeInTheForest : SonsMod
 
     public void OnWorldUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.F2))
+        if ((Input.GetKeyDown(KeyCode.F2)))
         {
             SetupTimmy();
             SonsTools.ShowMessage("Timmy foi spawnado", 10.0f);
