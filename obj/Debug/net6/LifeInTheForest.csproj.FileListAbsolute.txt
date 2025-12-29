@@ -448,3 +448,4 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\obj\Debug\net6\Lif
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\obj\Debug\net6\refint\LifeInTheForest.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\obj\Debug\net6\LifeInTheForest.pdb
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\obj\Debug\net6\ref\LifeInTheForest.dll
+C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\AltV.dll

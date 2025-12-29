@@ -7,6 +7,11 @@ using UnityEngine;
 using Il2CppSystem.Collections.Generic;
 using System.Linq;
 using Sons.Items.Core;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using System.IO;
+using System.Reflection;
+using System.Collections;
+
 
 namespace LifeInTheForest;
 
@@ -21,13 +26,15 @@ public class ImprovedKelvin: MonoBehaviour
     private StateSet robbyCombatSet;
     private GameObject robbyWeaponObj;
 
+    // --- constants ---
+    const string goldenArmor = "VisualRoot/RobbyRig/GEO/GoldenArmor";
+
     public void Awake()
     {
         robby = GetComponent<VailActor>();
     }
     public void Start()
     {
-
         kickWeapon = robby._meleeWeapons[0]._gameObject.GetComponent<Sons.Gameplay.MeleeWeapon>();
         kickWeapon._damage = 100.0f;
         kickWeapon._meleeWeaponData.SwingSpeed = 200.0f;
@@ -51,15 +58,13 @@ public class ImprovedKelvin: MonoBehaviour
 
             var behaviorToRemove = new System.Collections.Generic.List<string>();
             // TODO: Nao sei se TODOS os grupos funcionam. Tem que testar melhor.
-            behaviorToRemove.Add("Flee Area");
-            behaviorToRemove.Add("Run Away, Run To Cover");
+            behaviorToRemove.Add("Robby Cower");
             behaviorToRemove.Add("Flee From Enemies");
-            behaviorToRemove.Add(" Back away");
-            behaviorToRemove.Add("Point At Enemies");
-            behaviorToRemove.Add("Step Back Cautious");
-            behaviorToRemove.Add("Cross Back Away");
+            behaviorToRemove.Add("Hide Behind Player");
+            behaviorToRemove.Add("Robby Back Away");
+            behaviorToRemove.Add("Point At Enemy");
             FilterGroups(robbyCombatSet, behaviorToRemove);
-        }            
+        }
     }
 
     private void FilterGroups(StateSet stateSet, System.Collections.Generic.List<string> toRemove)
@@ -99,19 +104,48 @@ public class ImprovedKelvin: MonoBehaviour
         switch(name)
         {
             case "add_golden_armor":
-                robby.gameObject.transform.Find("VisualRoot/RobbyRig/GEO/GoldenArmor").gameObject.SetActive(value: true);
+                robby.gameObject.transform.Find(goldenArmor).gameObject.SetActive(value: true);
                 break;
             case "rm_golden_armor":
-                robby.gameObject.transform.Find("VisualRoot/RobbyRig/GEO/GoldenArmor").gameObject.SetActive(value: false);
+                robby.gameObject.transform.Find(goldenArmor).gameObject.SetActive(value: false);
                 break;
             default:
                 break;
         }
-    } 
-
-    private void AddWeapon()
-    {
-       
     }
 }
+
+    //private void TextureProgression()
+    //{
+    //    RLog.Msg("ENTER TEXTURE FUNC");
+    //    string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+    //    RLog.Msg($"dir path: {path}");
+    //    string robbyTexturePath = Path.Combine(path, "LifeInTheForest", "Textures", "RobbyHeadCustom2.png");
+    //    RLog.Msg($"texture path: {robbyTexturePath}");
+
+    //    if (!File.Exists(robbyTexturePath))
+    //    {
+    //        RLog.Error("[Error] Texture robbyhead not founded.");
+    //        RLog.Msg("[Error] Algum problema com o path.");
+    //        return;
+    //    }
+
+    //    Texture2D newTexture = new Texture2D(2, 2);
+    //    byte[] fileData = File.ReadAllBytes(path);
+    //    Il2CppStructArray<byte> il2cppBytes = fileData;
+    //    ImageConversion.LoadImage(newTexture, il2cppBytes);
+
+    //    Transform headTransform = robby.transform.Find("VisualRoot/RobbyRig/GEO/RobbyHead");
+    //    if (headTransform != null)
+    //    {
+    //        Renderer renderer = headTransform.GetComponent<Renderer>();
+    //        if (renderer != null) 
+    //        {
+    //            renderer.material.SetTexture("_BaseColorMap", newTexture);
+    //            RLog.Msg("new texture applied!");
+    //        } else { RLog.Msg("[Error] Renderer is null"); }
+    //    }
+    //    else { RLog.Msg("[Error] Applying Texture. headTrasnform is null"); }
+    //}
+
 

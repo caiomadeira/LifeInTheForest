@@ -45,8 +45,15 @@ public class LifeInTheForest : SonsMod
         if (BoltNetwork.isServerOrNotRunning)
         {
             ActorTools.GetPrefab(VailActorTypeId.Robby).gameObject.AddComponent<ImprovedKelvin>();
-            
         }
+        UpdateTextureHandlers();
+    }
+
+    public static void UpdateTextureHandlers(bool forceReload = false)
+    {
+        var handler = new BaseTextureHandler("RobbyHead", VailActorTypeId.Robby, "VisualRoot/RobbyRig/GEO/RobbyHead", 0);
+        handler.SetTexture("RobbyHeadCustom2");
+        RLog.Msg("Updated texture handlers!!!!!!!!!!");
     }
 
     protected override void OnGameStart()

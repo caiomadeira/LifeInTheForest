@@ -10,6 +10,7 @@
         "dependencies": {
           "0Harmony": "2.10.1.0",
           "AlternateKelvinVirginiaOutfits": "1.0.0.0",
+          "AltV": "1.0.0.0",
           "bolt": "0.4.3.4",
           "Bolt.Unity": "0.0.0.0",
           "bolt.user": "0.0.0.0",
@@ -119,6 +120,14 @@
       "AlternateKelvinVirginiaOutfits/1.0.0.0": {
         "runtime": {
           "AlternateKelvinVirginiaOutfits.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AltV/1.0.0.0": {
+        "runtime": {
+          "AltV.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1730,6 +1739,11 @@
       "sha512": ""
     },
     "AlternateKelvinVirginiaOutfits/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AltV/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -9,6 +9,9 @@
       <Reference Include="AlternateKelvinVirginiaOutfits">
         <HintPath>..\..\..\..\..\Downloads\Alternate Kelvin and Virginia Outfits 1.0.0\Mods\AlternateKelvinVirginiaOutfits.dll</HintPath>
       </Reference>
+      <Reference Include="AltV">
+        <HintPath>..\..\..\..\..\Downloads\AltV 1.0.0\Mods\AltV.dll</HintPath>
+      </Reference>
       <Reference Include="Il2CppInterop.Common">
         <HintPath>$(GameDir)\_RedLoader\net6\Il2CppInterop.Common.dll</HintPath>
       </Reference>

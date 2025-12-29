@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LifeInTheForest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f33481b98cf38155e54698e954aec0342c36ab0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73e192661995fc505065168c0b102dbe64808c46")]
 [assembly: System.Reflection.AssemblyProductAttribute("LifeInTheForest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LifeInTheForest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
