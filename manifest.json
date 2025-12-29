@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ToniMacaroni/RedLoader/main/MetadataSchema.json",
+  "id": "LifeInTheForest",
+  "author": "Caio Madeira",
+  "version": "1.0.0",
+  "description": "All this environment for, in the end, leave? No, with this vanilla friendly mod your life into the woods continues.",
+  "gameVersion": "1.0.0",
+  "type": "Mod",
+  "url": "..."
+}

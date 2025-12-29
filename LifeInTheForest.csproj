@@ -1,0 +1,324 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="AlternateKelvinVirginiaOutfits">
+        <HintPath>..\..\..\..\Downloads\Alternate Kelvin and Virginia Outfits 1.0.0\Mods\AlternateKelvinVirginiaOutfits.dll</HintPath>
+      </Reference>
+      <Reference Include="AlternativeMenu">
+        <HintPath>..\..\..\..\Downloads\Alternative Menu 1.0.6\Mods\AlternativeMenu.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppInterop.Common">
+        <HintPath>$(GameDir)\_RedLoader\net6\Il2CppInterop.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppInterop.Generator">
+        <HintPath>$(GameDir)\_RedLoader\net6\Il2CppInterop.Generator.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppInterop.Runtime">
+        <HintPath>$(GameDir)\_RedLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>$(GameDir)\_RedLoader\Game\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="KelvinCanAttack">
+        <HintPath>..\..\..\..\Downloads\Kelvin Can Attack 1.0.0\Mods\KelvinCanAttack.dll</HintPath>
+      </Reference>
+      <Reference Include="KelvinGPT">
+        <HintPath>..\..\..\..\Downloads\Kelvin-GPT 1.0.6\Mods\KelvinGPT.dll</HintPath>
+      </Reference>
+      <Reference Include="PlaneMod">
+        <HintPath>..\..\..\..\Downloads\Plane Mod-184-1-1-0-1735558679\Mods\PlaneMod.dll</HintPath>
+      </Reference>
+      <Reference Include="RaidCustomizer">
+        <HintPath>..\..\..\..\Downloads\Raid Customizer 1.0.1\Mods\RaidCustomizer.dll</HintPath>
+      </Reference>
+      <Reference Include="RedLoader">
+        <HintPath>$(GameDir)\_RedLoader\net6\RedLoader.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons">
+        <HintPath>$(GameDir)\_RedLoader\Game\Sons.dll</HintPath>
+      </Reference>
+      <Reference Include="Endnight">
+          <HintPath>$(GameDir)\_RedLoader\Game\Endnight.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Ai.Utilities">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Ai.Utilities.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Ai.Vail">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Ai.Vail.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Areas">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Areas.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Cinematics">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Cinematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Gameplay.LevelProps">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Gameplay.LevelProps.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Gameplay.StatusEffects">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Gameplay.StatusEffects.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.StatSystem">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.StatSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Weapon">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Weapon.dll</HintPath>
+      </Reference>
+      <Reference Include="SonsSdk">
+        <HintPath>$(GameDir)\_RedLoader\net6\SonsSdk.dll</HintPath>
+      </Reference>
+      <Reference Include="Tattoo">
+        <HintPath>..\..\..\..\Downloads\Tattoo 1.0.3\Mods\Tattoo.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="0Harmony">
+        <HintPath>$(GameDir)\_RedLoader\net6\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="bolt">
+        <HintPath>$(GameDir)\_RedLoader\Game\bolt.dll</HintPath>
+      </Reference>
+      <Reference Include="Bolt.Unity">
+        <HintPath>$(GameDir)\_RedLoader\Game\Bolt.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="bolt.user">
+        <HintPath>$(GameDir)\_RedLoader\Game\bolt.user.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Construction">
+        <HintPath>$(GameDir)\_RedLoader\Game\Sons.Construction.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Construction.Utils">
+        <HintPath>$(GameDir)\_RedLoader\Game\Sons.Construction.Utils.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Gui">
+        <HintPath>$(GameDir)\_RedLoader\Game\Sons.Gui.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Item">
+        <HintPath>$(GameDir)\_RedLoader\Game\Sons.Item.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Multiplayer">
+        <HintPath>$(GameDir)\_RedLoader\Game\Sons.Multiplayer.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>$(GameDir)\_RedLoader\Game\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\unity-libs\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="VirginiaAlternateHair">
+        <HintPath>..\..\..\..\Downloads\Virginia Alternate Hair 1.0.0\Mods\VirginiaAlternateHair.dll</HintPath>
+      </Reference>
+      <Reference Include="VirginiaCombat">
+        <HintPath>..\..\..\..\Downloads\VirginiaCombat 1.0.0\Mods\VirginiaCombat.dll</HintPath>
+      </Reference>
+      <Reference Include="VirginiaStopBeckon">
+        <HintPath>..\..\..\..\Downloads\VirginiaStopBeckon 1.0.1\Mods\VirginiaStopBeckon.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="manifest.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+        <None Remove="ReleaseBuild\**" />
+    </ItemGroup>
+
+</Project>
