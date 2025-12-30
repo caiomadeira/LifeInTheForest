@@ -48,6 +48,9 @@
       <Reference Include="Sons.Item">
         <HintPath>$(GameDir)\_RedLoader\Game\Sons.Item.dll</HintPath>
       </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
@@ -59,6 +62,12 @@
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>D:\CAIO\SOFTWARES\hub_editor\6000.0.64f1\Editor\Data\PlaybackEngines\windowsstandalonesupport\Variations\win64_player_nondevelopment_mono\Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\UnityEngine.UIModule.dll</HintPath>
       </Reference>
     </ItemGroup>
 

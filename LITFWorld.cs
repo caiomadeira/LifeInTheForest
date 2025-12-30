@@ -15,6 +15,7 @@ public class LITFWorld : MonoBehaviour
     public static LITFWorld Instance { get; private set; }
     private VailWorldSimulation worldSimulation;
     private SeasonsManager seasonsManager;
+    private int _lastDayAgingChecked = -1;
     public void Awake()
     {
         Instance = this;
@@ -37,6 +38,7 @@ public class LITFWorld : MonoBehaviour
         }
 
         if (worldSimulation == null) return;
+        CheckTimeAgeActors();
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
@@ -60,12 +62,41 @@ public class LITFWorld : MonoBehaviour
             RLog.Msg($"Year Passed: {GetYearsPassed()}");
             RLog.Msg($"Months Passed: {GetMonthsPassed()}");
         }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+
+        }
+
     }
+
+    private void CheckTimeAgeActors()
+    {
+        int currentDay = worldSimulation.DaysPassed;
+
+        if (currentDay != _lastDayAgingChecked )
+        {
+            _lastDayAgingChecked = currentDay;
+            int years = GetYearsPassed();
+            var kelvin = UnityEngine.Object.FindObjectOfType<ImprovedKelvin>();
+            if (kelvin != null)
+            {
+                kelvin.UpdateAgeVisual(years, false);
+                kelvin.UpdateAgeCloths(years, false);
+            }
+        }
+    }
+
     /*
      * I assume a Year = Summer Duration + Spring Duration + Winter Duration + Atumn Duration.
      * Well, Year / DaysPassed
      */
-
     private float GetYearDuration()
     {
         if (seasonsManager == null) return 20f; // default duration for Normal Difficult
@@ -75,7 +106,7 @@ public class LITFWorld : MonoBehaviour
                                           out float winterMagnitude);
         return springMagnitude + summerMagnitude + fallMagnitude + winterMagnitude;
     }
-    private float GetYearsPassed()
+    private int GetYearsPassed()
     {
         float year = GetYearDuration();
         if (year <= 0) return 0;
@@ -92,17 +123,15 @@ public class LITFWorld : MonoBehaviour
     {
         float yearsPassed = GetYearsMonthPassed();
         int monthIndex = (int)(yearsPassed * 12) % 12;
-        return monthIndex + 1; // just to range 1, 12 instead of 0, 11
+        return monthIndex + 1; // just to range from 1 to 12 instead of 0 to 11
     }
 
-    private float GetDaysPassed() { return worldSimulation != null ? worldSimulation.DaysPassed : 0;  }
-
-    private bool IsPlayerStayedOnIsland()
+    public bool IsPlayerStayedOnIsland()
     {
         return VailWorldStateNetworked.HasWorldFlag(VailWorldStateNetworked.WorldFlags.EndGameContinue);
     }
 
-    private bool IsPlayerEscapeFromIsland()
+    public bool IsPlayerEscapeFromIsland()
     {
         return VailWorldStateNetworked.HasWorldFlag(VailWorldStateNetworked.WorldFlags.EndGameEscape);
     }
