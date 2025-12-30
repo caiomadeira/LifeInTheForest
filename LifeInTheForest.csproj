@@ -9,6 +9,9 @@
       <Reference Include="bolt">
         <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\bolt.dll</HintPath>
       </Reference>
+      <Reference Include="bolt.user">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\bolt.user.dll</HintPath>
+      </Reference>
       <Reference Include="Il2CppInterop.Runtime">
         <HintPath>$(GameDir)\_RedLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
       </Reference>
@@ -26,6 +29,9 @@
       </Reference>
       <Reference Include="Sons.Ai.Vail">
         <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Ai.Vail.dll</HintPath>
+      </Reference>
+      <Reference Include="Sons.Atmosphere">
+        <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.Atmosphere.dll</HintPath>
       </Reference>
       <Reference Include="Sons.StatSystem">
         <HintPath>D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game\Sons.StatSystem.dll</HintPath>

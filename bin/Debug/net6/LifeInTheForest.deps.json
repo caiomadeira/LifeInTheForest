@@ -9,11 +9,13 @@
       "LifeInTheForest/1.0.0": {
         "dependencies": {
           "bolt": "0.4.3.4",
+          "bolt.user": "0.0.0.0",
           "Il2CppInterop.Runtime": "1.4.6.0",
           "Il2Cppmscorlib": "4.0.0.0",
           "RedLoader": "0.8.6.0",
           "Sons.Ai.Utilities": "0.0.0.0",
           "Sons.Ai.Vail": "0.0.0.0",
+          "Sons.Atmosphere": "0.0.0.0",
           "Sons": "0.0.0.0",
           "Sons.Gui": "0.0.0.0",
           "Sons.Item": "0.0.0.0",
@@ -33,6 +35,14 @@
         "runtime": {
           "bolt.dll": {
             "assemblyVersion": "0.4.3.4",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "bolt.user/0.0.0.0": {
+        "runtime": {
+          "bolt.user.dll": {
+            "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -72,6 +82,14 @@
       "Sons.Ai.Vail/0.0.0.0": {
         "runtime": {
           "Sons.Ai.Vail.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Sons.Atmosphere/0.0.0.0": {
+        "runtime": {
+          "Sons.Atmosphere.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -341,14 +359,6 @@
           }
         }
       },
-      "Sons.Atmosphere/0.0.0.0": {
-        "runtime": {
-          "Sons.Atmosphere.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "FMOD.Unity/0.0.0.0": {
         "runtime": {
           "FMOD.Unity.dll": {
@@ -440,14 +450,6 @@
       "Sons.FMOD/0.0.0.0": {
         "runtime": {
           "Sons.FMOD.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "bolt.user/0.0.0.0": {
-        "runtime": {
-          "bolt.user.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -877,6 +879,30 @@
           }
         }
       },
+      "Crest/0.0.0.0": {
+        "runtime": {
+          "Crest.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "MicroSplatChanges/0.0.0.0": {
+        "runtime": {
+          "MicroSplatChanges.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.WindModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.WindModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.AssetBundleModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.AssetBundleModule.dll": {
@@ -1024,30 +1050,6 @@
       "UnityEngine.InputModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.InputModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Crest/0.0.0.0": {
-        "runtime": {
-          "Crest.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "MicroSplatChanges/0.0.0.0": {
-        "runtime": {
-          "MicroSplatChanges.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.WindModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.WindModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -1314,6 +1316,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bolt.user/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Il2CppInterop.Runtime/1.4.6.0": {
       "type": "reference",
       "serviceable": false,
@@ -1335,6 +1342,11 @@
       "sha512": ""
     },
     "Sons.Ai.Vail/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Sons.Atmosphere/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1504,11 +1516,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Sons.Atmosphere/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "FMOD.Unity/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1565,11 +1572,6 @@
       "sha512": ""
     },
     "Sons.FMOD/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "bolt.user/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1839,6 +1841,21 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Crest/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MicroSplatChanges/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.WindModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.AssetBundleModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1930,21 +1947,6 @@
       "sha512": ""
     },
     "UnityEngine.InputModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Crest/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MicroSplatChanges/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.WindModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

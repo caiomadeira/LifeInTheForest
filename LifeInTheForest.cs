@@ -13,28 +13,23 @@ public class LifeInTheForest : SonsMod
 {
     private bool friendSpawned = false;
     private VailActor friendInstance = null;
+    private bool _wordInjected = false;
 
     public LifeInTheForest()
     {
         OnGUICallback = DebugUI;
         OnWorldUpdatedCallback = OnWorldUpdate;
-        // Uncomment this to automatically apply harmony patches in your assembly.
         // HarmonyPatchAll = true;
     }
 
     protected override void OnInitializeMod()
     {
         Config.Init();
-
     }
 
     protected override void OnSdkInitialized()
     {
-        // Do your mod initialization which involves game or sdk references here
-        // This is for stuff like UI creation, event registration etc.
         LifeInTheForestUi.Create();
-
-        // Add in-game settings ui for your mod.
         SettingsRegistry.CreateSettings(this, null, typeof(Config));
         SdkEvents.OnGameActivated.Subscribe(OnGameActivated);
     }
@@ -61,16 +56,31 @@ public class LifeInTheForest : SonsMod
         LocalPlayer.FpCharacter.SetWalkSpeed(20);
         var testc = "Game Started";
         RLog.Msg($"Minha Variavel: {testc}");
+        _wordInjected = false;
     }
 
     public void OnWorldUpdate()
     {
+        if (!_wordInjected)
+        {
+            if (VailWorldSimulation._instance != null)
+            {
+                GameObject world = VailWorldSimulation._instance.gameObject;
+                if (world.GetComponent<LITFWorld>() == null)
+                {
+                    world.AddComponent<LITFWorld>();
+                    RLog.Msg(">>>>> LITFWorld injected");
+                }
+                
+                _wordInjected = true;
+            }
+        }
+
+
         if ((Input.GetKeyDown(KeyCode.F2)))
         {
             SetupTimmy();
             SonsTools.ShowMessage("Timmy foi spawnado", 10.0f);
-            //SetupRobby();
-            //UpdateRobby();
         }
     }
 

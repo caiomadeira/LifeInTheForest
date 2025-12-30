@@ -1,0 +1,260 @@
+﻿[20:36:48.120] Trying to fix and init Reshade
+[20:36:48.531] Running under Unity 2022.2.16f1
+[20:36:48.532] Runtime version: 6.0.7
+[20:36:48.532] Runtime information: .NET 6.0.7
+[20:36:48.532] Game executable path: D:\SteamLibrary\steamapps\common\Sons Of The Forest\SonsOfTheForest.exe
+[20:36:48.537] Interop assembly directory: D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader\Game
+[20:36:48.537] Redloader root path: D:\SteamLibrary\steamapps\common\Sons Of The Forest\_Redloader
+[20:36:49.276] 0 patchers loaded
+[20:36:50.610] 0 assemblies discovered
+[20:36:50.617] Executing 0 patch(es)
+[20:36:50.625] Chainloader initialized
+[20:36:56.631] ------------------------------
+[20:36:56.632] LifeInTheForest v1.0.0 (LifeInTheForest)
+[20:36:56.632] by Caio Madeira
+[20:36:56.632] Assembly: LifeInTheForest.dll
+[20:36:56.632] ------------------------------
+[20:36:56.677] Loaded mod  for game 1.0.0
+[20:36:56.714] ------------------------------
+[20:36:56.714] UnityExplorer v4.9.4 (UnityExplorer)
+[20:36:56.714] by Sinaidev, Toni Macaroni
+[20:36:56.714] Assembly: UnityExplorer.dll
+[20:36:56.714] ------------------------------
+[20:36:56.714] Loaded mod  for game 1.0.0
+[20:36:56.715] 2 plugins to load
+[20:36:56.715] Chainloader startup complete
+[20:36:56.716] MelonPreferences Loaded from D:\SteamLibrary\steamapps\common\Sons Of The Forest\UserData\LifeInTheForest.cfg
+[20:36:56.729] [UnityExplorer] UnityExplorer 4.9.4 initializing...
+[20:36:56.735] MelonPreferences Loaded from D:\SteamLibrary\steamapps\common\Sons Of The Forest\UserData\UnityExplorerConfig.cfg
+[20:36:56.759] [UnityExplorer] [UniverseLib] UniverseLib 1.5.1 initializing...
+[20:36:58.052] [UnityExplorer] [UniverseLib] Loaded Unhollowed modules in 0,004 seconds.
+[20:36:58.322] [UnityExplorer] [UniverseLib] Setup deobfuscation cache in 0,26900002 seconds.
+[20:36:58.327] [UnityExplorer] [UniverseLib] Finished UniverseLib initial setup.
+[20:36:58.548] [UnityExplorer] Initialized UnityCrashPrevention for: Canvas.get_renderingDisplaySize
+[20:37:08.797] [UnityExplorer] [UniverseLib] Initialized Legacy Input support
+[20:37:08.947] [UnityExplorer] [UniverseLib] 	 IL2CPP method has no corresponding pointer, aborting patch of UnityEngine.AssetBundle.UnloadAllAssetBundles
+[20:37:09.021] [UnityExplorer] [UniverseLib] Loaded modern bundle for Unity 2022.2.16f1
+[20:37:09.055] [UnityExplorer] [UniverseLib] UniverseLib 1.5.1 initialized.
+[20:37:09.058] [UnityExplorer] Creating UI...
+[20:37:09.788] [UnityExplorer] Import usings from 'D:\SteamLibrary\steamapps\common\Sons Of The Forest\Mods\UnityExplorer\Scripts\usings.txt'...
+[20:37:09.883] [UnityExplorer] UnityExplorer 4.9.4 (IL2CPP) initialized.
+[20:37:09.883] [UnityExplorer] Starting VsCodeInterop...
+[20:37:10.179] [GameResources] Loading resources took 0ms
+[20:37:11.411] [SUI.InitPrefabs] took 266ms
+[20:38:27.785] === Game Scene Initialized ===
+[20:38:28.227] ||| Game Activated |||
+[20:38:28.773] Updated texture handlers!!!!!!!!!!
+[20:38:50.401] ==================================================
+[20:38:50.557] DESERIALIZING MOD DATA
+[20:38:50.716] SaveGameManager deserializing took 0ms
+[20:38:50.985] Constructing mod list took 0ms
+[20:38:51.154] ==================================================
+[20:38:51.705] Minha Variavel: Game Started
+[20:38:51.995] Registered command 'togglegrass'
+[20:38:52.175] Registered command 'xfreecam'
+[20:38:52.359] Registered command 'cancelblueprints'
+[20:38:52.547] Registered command 'finishblueprints'
+[20:38:52.739] Registered command 'noforest'
+[20:38:52.934] Registered command 'clearpickups'
+[20:38:53.129] Registered command 'gotopickup'
+[20:38:53.327] Registered command 'aighostplayer'
+[20:38:53.528] Registered command 'saveconsolepos'
+[20:38:53.734] Registered command 'virginiasentiment'
+[20:38:53.942] Registered command 'virginiavisit'
+[20:38:54.154] Registered command 'dump'
+[20:38:54.381] Registered command 'playcutscene'
+[20:38:54.599] Registered command 'getsaveid'
+[20:38:54.821] Registered command 'dumpboltserializers'
+[20:38:55.046] Registered command 'placestructure'
+[20:38:55.371] Kelvin: Arma configurada para matar!
+[20:38:55.680] KELVIN GROUP NAME: Wait For Interaction
+[20:38:55.922] KELVIN GROUP NAME: Run From Explosion
+[20:38:56.172] KELVIN GROUP NAME: Robby Cower
+[20:38:56.420] KELVIN GROUP NAME: Point At Enemy
+[20:38:56.672] KELVIN GROUP NAME: Flee From Enemies
+[20:38:56.927] KELVIN GROUP NAME: Robby Attack Reaction
+[20:38:57.185] KELVIN GROUP NAME: Disengage Combat
+[20:38:57.446] KELVIN GROUP NAME: Lost Sight Of Enemy
+[20:38:57.710] KELVIN GROUP NAME: Robby Stand Idle
+[20:38:57.979] KELVIN GROUP NAME: Robby Back Away
+[20:38:58.255] KELVIN GROUP NAME: Hide Behind Player
+[20:38:58.529] KELVIN GROUP NAME: Watch Enemy
+[20:38:58.807] KELVIN GROUP NAME: Wander
+[20:38:59.088] Removendo comportamento: Robby Cower
+[20:38:59.371] Removendo comportamento: Point At Enemy
+[20:38:59.651] Removendo comportamento: Flee From Enemies
+[20:38:59.925] Removendo comportamento: Robby Back Away
+[20:39:00.205] Removendo comportamento: Hide Behind Player
+[20:39:05.846] days passed: 34
+[20:39:06.122] time in hours: 832,40137
+[20:39:06.395] days passed: 16,401367
+[20:39:06.668] current season: Winter
+[20:39:06.942] current wetness(umidade): 0,069587275
+[20:39:07.213] current darkness factor: 0
+[20:39:07.483] cannibal killed by player count: 174,25
+[20:39:07.780] cannibal killed by player count RECENT: 0
+[20:39:08.053] cannibal anger level: 1
+[20:39:08.345] Robby Character Materials: 
+[20:39:08.644] get game progression to str (method): Sons.Ai.Vail.VailWorldSimulation+GameProgression
+[20:39:08.920] GetWorldTickMs: System.Func`1[System.Single]
+[20:39:09.195] NearbyActors:
+[20:39:09.554] -------------------------------
+[20:39:09.849] actor id=Cannibal
+[20:39:10.127] actor state=Sons.Ai.Vail.State
+[20:39:10.404] actor is dead=False
+[20:39:10.702] actor position: (-1339.58, 253.28, -845.14)
+[20:39:10.986] actor destination=(0.00, 0.00, 0.00)
+[20:39:11.283] actor current zone=
+[20:39:11.603] actor IsFamilyMoveInProgress=False
+[20:39:11.889] actor LastVisitTimeHours=-100
+[20:39:12.171] actor unique id=1713
+[20:39:12.453] -------------------------------
+[20:39:12.732] -------------------------------
+[20:39:13.007] actor id=Cannibal
+[20:39:13.280] actor state=Sons.Ai.Vail.State
+[20:39:13.552] actor is dead=False
+[20:39:13.823] actor position: (-1347.09, 253.28, -822.20)
+[20:39:14.096] actor destination=(0.00, 0.00, 0.00)
+[20:39:14.369] actor current zone=
+[20:39:14.641] actor IsFamilyMoveInProgress=False
+[20:39:14.916] actor LastVisitTimeHours=-100
+[20:39:15.190] actor unique id=1714
+[20:39:15.465] -------------------------------
+[20:39:15.739] -------------------------------
+[20:39:16.006] actor id=Cannibal
+[20:39:16.273] actor state=Sons.Ai.Vail.State
+[20:39:16.540] actor is dead=False
+[20:39:16.807] actor position: (-1349.44, 253.28, -822.61)
+[20:39:17.074] actor destination=(0.00, 0.00, 0.00)
+[20:39:17.340] actor current zone=
+[20:39:17.607] actor IsFamilyMoveInProgress=False
+[20:39:17.874] actor LastVisitTimeHours=-100
+[20:39:18.140] actor unique id=1715
+[20:39:18.410] -------------------------------
+[20:39:18.683] -------------------------------
+[20:39:18.943] actor id=Cannibal
+[20:39:19.224] actor state=Sons.Ai.Vail.State
+[20:39:19.490] actor is dead=False
+[20:39:19.753] actor position: (-1356.16, 253.28, -834.35)
+[20:39:20.017] actor destination=(0.00, 0.00, 0.00)
+[20:39:20.280] actor current zone=
+[20:39:20.540] actor IsFamilyMoveInProgress=False
+[20:39:20.802] actor LastVisitTimeHours=-100
+[20:39:21.063] actor unique id=1716
+[20:39:21.328] -------------------------------
+[20:39:21.590] -------------------------------
+[20:39:21.858] actor id=Cannibal
+[20:39:22.115] actor state=Sons.Ai.Vail.State
+[20:39:22.369] actor is dead=False
+[20:39:22.623] actor position: (-1337.84, 253.28, -842.46)
+[20:39:22.881] actor destination=(0.00, 0.00, 0.00)
+[20:39:23.138] actor current zone=
+[20:39:23.396] actor IsFamilyMoveInProgress=False
+[20:39:23.652] actor LastVisitTimeHours=-100
+[20:39:23.911] actor unique id=1717
+[20:39:24.169] -------------------------------
+[20:39:24.423] -------------------------------
+[20:39:24.670] actor id=Cannibal
+[20:39:24.921] actor state=Sons.Ai.Vail.State
+[20:39:25.216] actor is dead=False
+[20:39:25.475] actor position: (-1354.81, 253.28, -845.86)
+[20:39:25.730] actor destination=(0.00, 0.00, 0.00)
+[20:39:25.982] actor current zone=
+[20:39:26.230] actor IsFamilyMoveInProgress=False
+[20:39:26.476] actor LastVisitTimeHours=-100
+[20:39:26.723] actor unique id=1718
+[20:39:26.972] -------------------------------
+[20:39:27.291] game progression (attribrute) : Sons.Ai.Vail.VailWorldSimulation+GameProgression
+[20:39:27.855] days passed: 34
+[20:39:28.159] time in hours: 832,42255
+[20:39:28.426] days passed: 16,422546
+[20:39:28.687] current season: Winter
+[20:39:28.942] current wetness(umidade): 0,0695716
+[20:39:29.196] current darkness factor: 0
+[20:39:29.452] cannibal killed by player count: 174,25
+[20:39:29.711] cannibal killed by player count RECENT: 0
+[20:39:29.964] cannibal anger level: 1
+[20:39:30.217] Robby Character Materials: 
+[20:39:30.489] get game progression to str (method): Sons.Ai.Vail.VailWorldSimulation+GameProgression
+[20:39:30.748] GetWorldTickMs: System.Func`1[System.Single]
+[20:39:31.006] NearbyActors:
+[20:39:31.264] -------------------------------
+[20:39:31.523] actor id=Cannibal
+[20:39:31.776] actor state=Sons.Ai.Vail.State
+[20:39:32.030] actor is dead=False
+[20:39:32.322] actor position: (-1349.00, 252.20, -834.50)
+[20:39:32.595] actor destination=(0.00, 0.00, 0.00)
+[20:39:32.929] actor current zone=Sons.Ai.Vail.IActorZone
+[20:39:33.188] actor IsFamilyMoveInProgress=False
+[20:39:33.445] actor LastVisitTimeHours=-100
+[20:39:33.698] actor unique id=1725
+[20:39:33.948] -------------------------------
+[20:39:34.216] -------------------------------
+[20:39:34.474] actor id=Cannibal
+[20:39:34.731] actor state=Sons.Ai.Vail.State
+[20:39:34.990] actor is dead=False
+[20:39:35.248] actor position: (-1342.19, 253.28, -845.60)
+[20:39:35.505] actor destination=(-1349.00, 252.20, -834.50)
+[20:39:35.756] actor current zone=Sons.Ai.Vail.IActorZone
+[20:39:36.012] actor IsFamilyMoveInProgress=False
+[20:39:36.264] actor LastVisitTimeHours=-100
+[20:39:36.515] actor unique id=1721
+[20:39:36.766] -------------------------------
+[20:39:37.025] -------------------------------
+[20:39:37.277] actor id=Cannibal
+[20:39:37.529] actor state=Sons.Ai.Vail.State
+[20:39:37.781] actor is dead=False
+[20:39:38.044] actor position: (-1359.65, 253.28, -818.46)
+[20:39:38.312] actor destination=(0.00, 0.00, 0.00)
+[20:39:38.571] actor current zone=Sons.Ai.Vail.IActorZone
+[20:39:38.830] actor IsFamilyMoveInProgress=False
+[20:39:39.090] actor LastVisitTimeHours=-100
+[20:39:39.349] actor unique id=1722
+[20:39:39.610] -------------------------------
+[20:39:39.875] -------------------------------
+[20:39:40.135] actor id=Cannibal
+[20:39:40.395] actor state=Sons.Ai.Vail.State
+[20:39:40.653] actor is dead=False
+[20:39:40.906] actor position: (-1342.97, 253.28, -822.56)
+[20:39:41.173] actor destination=(0.00, 0.00, 0.00)
+[20:39:41.431] actor current zone=Sons.Ai.Vail.IActorZone
+[20:39:41.691] actor IsFamilyMoveInProgress=False
+[20:39:41.950] actor LastVisitTimeHours=-100
+[20:39:42.233] actor unique id=1723
+[20:39:42.492] -------------------------------
+[20:39:42.742] -------------------------------
+[20:39:42.987] actor id=Cannibal
+[20:39:43.257] actor state=Sons.Ai.Vail.State
+[20:39:43.512] actor is dead=False
+[20:39:43.765] actor position: (-1355.25, 253.28, -826.81)
+[20:39:44.019] actor destination=(0.00, 0.00, 0.00)
+[20:39:44.273] actor current zone=Sons.Ai.Vail.IActorZone
+[20:39:44.527] actor IsFamilyMoveInProgress=False
+[20:39:44.777] actor LastVisitTimeHours=-100
+[20:39:45.024] actor unique id=1724
+[20:39:45.271] -------------------------------
+[20:39:45.517] game progression (attribrute) : Sons.Ai.Vail.VailWorldSimulation+GameProgression
+[20:39:45.913] days passed: 34
+[20:39:46.211] time in hours: 832,42285
+[20:39:46.478] days passed: 16,422852
+[20:39:46.797] current season: Winter
+[20:39:47.084] current wetness(umidade): 0,069496244
+[20:39:47.384] current darkness factor: 0
+[20:39:47.643] cannibal killed by player count: 174,25
+[20:39:47.886] cannibal killed by player count RECENT: 0
+[20:39:48.130] cannibal anger level: 1
+[20:39:48.375] Robby Character Materials: 
+[20:39:48.619] get game progression to str (method): Sons.Ai.Vail.VailWorldSimulation+GameProgression
+[20:39:48.864] GetWorldTickMs: System.Func`1[System.Single]
+[20:39:49.151] NearbyActors:
+[20:39:49.428] -------------------------------
+[20:39:49.715] actor id=Cannibal
+[20:39:49.994] actor state=Sons.Ai.Vail.State
+[20:39:50.276] actor is dead=False
+[20:39:50.545] actor position: (-1349.00, 252.20, -834.50)
+[20:39:50.808] actor destination=(0.00, 0.00, 0.00)
+[20:39:51.080] actor current zone=Sons.Ai.Vail.IActorZone
+[20:39:51.350] actor IsFamilyMoveInProgress=False
+[20:39:51.622] actor LastVisitTimeHours=-100
+[20:39:51.890] actor unique id=1725
+[20:39:52.160] -------------------------------

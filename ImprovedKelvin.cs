@@ -1,17 +1,9 @@
 ﻿
 using RedLoader;
 using Sons.Ai.Vail;
-using Sons.Gameplay;
 using Sons.StatSystem;
 using UnityEngine;
-using Il2CppSystem.Collections.Generic;
-using System.Linq;
-using Sons.Items.Core;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using System.IO;
-using System.Reflection;
-using System.Collections;
-
+using SonsSdk;
 
 namespace LifeInTheForest;
 
@@ -24,7 +16,6 @@ public class ImprovedKelvin: MonoBehaviour
     private StatsManager robbyStats;
     private VailController robbyController;
     private StateSet robbyCombatSet;
-    private GameObject robbyWeaponObj;
 
     // --- constants ---
     const string goldenArmor = "VisualRoot/RobbyRig/GEO/GoldenArmor";
@@ -114,38 +105,3 @@ public class ImprovedKelvin: MonoBehaviour
         }
     }
 }
-
-    //private void TextureProgression()
-    //{
-    //    RLog.Msg("ENTER TEXTURE FUNC");
-    //    string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-    //    RLog.Msg($"dir path: {path}");
-    //    string robbyTexturePath = Path.Combine(path, "LifeInTheForest", "Textures", "RobbyHeadCustom2.png");
-    //    RLog.Msg($"texture path: {robbyTexturePath}");
-
-    //    if (!File.Exists(robbyTexturePath))
-    //    {
-    //        RLog.Error("[Error] Texture robbyhead not founded.");
-    //        RLog.Msg("[Error] Algum problema com o path.");
-    //        return;
-    //    }
-
-    //    Texture2D newTexture = new Texture2D(2, 2);
-    //    byte[] fileData = File.ReadAllBytes(path);
-    //    Il2CppStructArray<byte> il2cppBytes = fileData;
-    //    ImageConversion.LoadImage(newTexture, il2cppBytes);
-
-    //    Transform headTransform = robby.transform.Find("VisualRoot/RobbyRig/GEO/RobbyHead");
-    //    if (headTransform != null)
-    //    {
-    //        Renderer renderer = headTransform.GetComponent<Renderer>();
-    //        if (renderer != null) 
-    //        {
-    //            renderer.material.SetTexture("_BaseColorMap", newTexture);
-    //            RLog.Msg("new texture applied!");
-    //        } else { RLog.Msg("[Error] Renderer is null"); }
-    //    }
-    //    else { RLog.Msg("[Error] Applying Texture. headTrasnform is null"); }
-    //}
-
-
