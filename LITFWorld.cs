@@ -15,7 +15,8 @@ public class LITFWorld : MonoBehaviour
     public static LITFWorld Instance { get; private set; }
     private VailWorldSimulation worldSimulation;
     private SeasonsManager seasonsManager;
-    private int _lastDayAgingChecked = -1;
+    public int currentYearsPassed { get; private set; } = 0;
+    public bool IsInitialized { get; private set; } = false;
     public void Awake()
     {
         Instance = this;
@@ -38,58 +39,11 @@ public class LITFWorld : MonoBehaviour
         }
 
         if (worldSimulation == null) return;
-        CheckTimeAgeActors();
-
-        if (Input.GetKeyDown(KeyCode.F5))
+        currentYearsPassed = GetYearsPassed();
+        if (!IsInitialized)
         {
-            ////LogWorldStats();
-            //RLog.Msg($"Is Player Stayed On Island? {IsPlayerStayedOnIsland()}");
-            //RLog.Msg($"Is Player Escape From Island? {IsPlayerEscapeFromIsland()}");
-            //RLog.Msg($"Current Season: {wordSimulation.CurrentSeason}");
-            //RLog.Msg($"Season Properties Duration Days: {seasonsManager.GetActiveSeasonProperties().DurationDays}");
-            //RLog.Msg($"Seasons Manager _previousSeason: {seasonsManager.GetPreviousSeasonInternal()}");
-            //RLog.Msg($"Seasons Manager next season: {seasonsManager.GetNextSeasonInternal()}");
-            //RLog.Msg($"Seasons Manager _startingDaysOffset: {seasonsManager.GetStartingDayOffset()}");
-            //float springLen, summerLen, fallLen, winterLen;
-            //seasonsManager.GetSeasonDurations(out springLen, out summerLen, out fallLen, out winterLen);
-
-            //RLog.Msg($"--- Durações das Estações (Dias) ---");
-            //RLog.Msg($"Primavera: {springLen}");
-            //RLog.Msg($"Verão: {summerLen}");
-            //RLog.Msg($"Outono: {fallLen}");
-            //RLog.Msg($"Inverno: {winterLen}");
-
-            RLog.Msg($"Year Passed: {GetYearsPassed()}");
-            RLog.Msg($"Months Passed: {GetMonthsPassed()}");
-        }
-
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.F8))
-        {
-
-        }
-
-    }
-
-    private void CheckTimeAgeActors()
-    {
-        int currentDay = worldSimulation.DaysPassed;
-
-        if (currentDay != _lastDayAgingChecked )
-        {
-            _lastDayAgingChecked = currentDay;
-            int years = GetYearsPassed();
-            var kelvin = UnityEngine.Object.FindObjectOfType<ImprovedKelvin>();
-            if (kelvin != null)
-            {
-                kelvin.UpdateAgeVisual(years, false);
-                kelvin.UpdateAgeCloths(years, false);
-            }
+            IsInitialized = true;
+            RLog.Msg($"[LITFWorld] Cálculos iniciais prontos. Dias: {worldSimulation.DaysPassed}, Anos: {currentYearsPassed}");
         }
     }
 
@@ -104,7 +58,8 @@ public class LITFWorld : MonoBehaviour
                                           out float summerMagnitude,
                                           out float fallMagnitude,
                                           out float winterMagnitude);
-        return springMagnitude + summerMagnitude + fallMagnitude + winterMagnitude;
+        float total = springMagnitude + summerMagnitude + fallMagnitude + winterMagnitude;
+        return total > 0 ? total : 20f;
     }
     private int GetYearsPassed()
     {
@@ -124,16 +79,6 @@ public class LITFWorld : MonoBehaviour
         float yearsPassed = GetYearsMonthPassed();
         int monthIndex = (int)(yearsPassed * 12) % 12;
         return monthIndex + 1; // just to range from 1 to 12 instead of 0 to 11
-    }
-
-    public bool IsPlayerStayedOnIsland()
-    {
-        return VailWorldStateNetworked.HasWorldFlag(VailWorldStateNetworked.WorldFlags.EndGameContinue);
-    }
-
-    public bool IsPlayerEscapeFromIsland()
-    {
-        return VailWorldStateNetworked.HasWorldFlag(VailWorldStateNetworked.WorldFlags.EndGameEscape);
     }
 
     private void LogWorldStats()

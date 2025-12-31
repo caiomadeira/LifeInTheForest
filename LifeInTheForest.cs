@@ -39,6 +39,8 @@ public class LifeInTheForest : SonsMod
         if (BoltNetwork.isServerOrNotRunning)
         {
             ActorTools.GetPrefab(VailActorTypeId.Robby).gameObject.AddComponent<ImprovedKelvin>();
+            ActorTools.GetPrefab(VailActorTypeId.Robby).gameObject.AddComponent<LITFImprovedVirginia>();
+            RLog.Msg("LITF Kelvin e Virginia injecteds!!!");
         }
     }
 
