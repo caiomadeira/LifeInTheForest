@@ -23,10 +23,12 @@
           "Sons.Weapon": "0.0.0.0",
           "SonsSdk": "0.8.6.0",
           "Unity.TextMeshPro": "0.0.0.0",
+          "UnityEngine.AnimationModule": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine.ImageConversionModule": "0.0.0.0",
           "UnityEngine.IMGUIModule": "0.0.0.0",
           "UnityEngine.InputLegacyModule": "0.0.0.0",
+          "UnityEngine.PhysicsModule": "0.0.0.0",
           "UnityEngine.UI": "1.0.0.0",
           "UnityEngine.UIModule": "0.0.0.0"
         },
@@ -154,6 +156,14 @@
           }
         }
       },
+      "UnityEngine.AnimationModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.AnimationModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.CoreModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.CoreModule.dll": {
@@ -181,6 +191,14 @@
       "UnityEngine.InputLegacyModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.InputLegacyModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.PhysicsModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.PhysicsModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -226,26 +244,10 @@
           }
         }
       },
-      "UnityEngine.PhysicsModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.PhysicsModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "Il2CppSystem.Core/4.0.0.0": {
         "runtime": {
           "Il2CppSystem.Core.dll": {
             "assemblyVersion": "4.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.AnimationModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.AnimationModule.dll": {
-            "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1389,6 +1391,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.AnimationModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.CoreModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1405,6 +1412,11 @@
       "sha512": ""
     },
     "UnityEngine.InputLegacyModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.PhysicsModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1434,17 +1446,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.PhysicsModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Il2CppSystem.Core/4.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.AnimationModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

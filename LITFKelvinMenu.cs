@@ -46,7 +46,7 @@ public class LITFKelvinMenu : MonoBehaviour
                 textMesh.font = originalText.GetComponent<TextMeshProUGUI>().font;
             }
 
-            textMesh.fontSize = 28f;
+            textMesh.fontSize = 34f;
             textMesh.color = Color.black;
             textMesh.alignment = TextAlignmentOptions.Center;
             textObjTransform = gameObject.transform;

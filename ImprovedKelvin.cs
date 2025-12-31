@@ -1,9 +1,13 @@
 ﻿
 using RedLoader;
+using RedLoader.Utils;
 using Sons.Ai.Vail;
+using Sons.Items.Core;
 using Sons.StatSystem;
 using SonsSdk;
+using System.Reflection;
 using UnityEngine;
+using static CoopPlayerUpgrades;
 using static Il2CppMono.Globalization.Unicode.SimpleCollator;
 using static RedLoader.RLog;
 
@@ -38,10 +42,12 @@ public class ImprovedKelvin: MonoBehaviour
     const string tuxedoJacketMesh = "VisualRoot/RobbyRig/GEO/TuxedoJacketMesh";
     const string hoddieMesh = "VisualRoot/RobbyRig/GEO/HoodieMesh";
 
+    private GameObject _fakeShotgunInstance;
+
     // -- Control Variables ---
     // TODO: back to make this based if the player finish the game
     private bool IsAbleToUseGoldenArmor = true; // temporary
-
+    private bool _handTrimFounded = false;
     // -- menu system (pad)
     private LITFKelvinMenu menuSystem;
 
@@ -72,6 +78,16 @@ public class ImprovedKelvin: MonoBehaviour
         robbyHoddieTextureHandler = new BaseTextureHandler("HoodieMesh", VailActorTypeId.Robby, hoddieMesh, 0);
         RLog.Msg("[ImprovedKelvin] Hoddie Handler inicializado.");
         // CheckIfAbleToUseGoldenArmor();
+
+        robby.InitEquippedItems();
+
+        // --- CORREÇÃO DO ERRO DA LISTA ---
+        // Você precisa usar Il2CppSystem.Collections.Generic explicitamente
+        if (robby._equipItems == null)
+        {
+            robby._equipItems = new Il2CppSystem.Collections.Generic.List<VailActor.EquipItem>();
+            RLog.Msg("[ImprovedKelvin] Lista _equipItems criada manualmente (IL2CPP).");
+        }
     }
 
     private void SetupKelvinAttack(float weaponDamage, float weaponSwingSpeed, float weaponSwingSpeedTired)
@@ -85,9 +101,15 @@ public class ImprovedKelvin: MonoBehaviour
 
     private void SetupKelvinStats(float currentHealthValue, float maxHealtValue)
     {
+
+        VailStatsManager stats = robby.GetStatsManager();
+        if (stats == null)
+        {
+
+        }
+        robbyStats = robby._statsManager._statsManager;
         robby._statsManager._statsManager._stats[2]._currentValue = currentHealthValue;
         robby._statsManager._statsManager._stats[2]._max = maxHealtValue;
-        robbyStats = robby._statsManager._statsManager;
     }
 
     private void SetupKelvinBehavior()
@@ -124,11 +146,32 @@ public class ImprovedKelvin: MonoBehaviour
         if (robbyHeadTextureHandler == null) return;
 
         string newTextureName = "";
-
-        if (yearsPassed < 1) newTextureName = "RobbyHeadOld1";
-        else if (yearsPassed >= 1 && yearsPassed < 2) newTextureName = "RobbyHeadOld2";
-        else if (yearsPassed >= 2 && yearsPassed < 3) newTextureName = "RobbyHeadOld3";
-        else newTextureName = "RobbyHeadOld4";
+        switch(yearsPassed)
+        {
+            case 0:
+                newTextureName = "RobbyHead";
+                ToggleActivateRobbyMesh("RobbyBeard", false);
+                RLog.Msg($"[ImprovedKelvin] Aging case 0");
+                break;
+            case 1:
+                newTextureName = "RobbyHeadOld1";
+                ToggleActivateRobbyMesh("RobbyBeard", true);
+                RLog.Msg($"[ImprovedKelvin] Aging case 1");
+                break;
+            case 2:
+                newTextureName = "RobbyHeadOld2";
+                RLog.Msg($"[ImprovedKelvin] Aging case 2");
+                break;
+            case 3:
+                newTextureName = "RobbyHeadOld3";
+                RLog.Msg($"[ImprovedKelvin] Aging case 3");
+                break;
+            default:
+                newTextureName = "RobbyHeadOld4";
+                ToggleActivateRobbyMesh("RobbyHair", false);
+                RLog.Msg($"[ImprovedKelvin] Aging case DEFAULT");
+                break;
+        }
 
         if (_currentRobbyHeadTextureName != newTextureName)
         {
@@ -196,11 +239,11 @@ public class ImprovedKelvin: MonoBehaviour
 
     public void Update()
     {
+        //OnKelvinFall();
         //if (robby.IsAlerted() && IsAbleToUseGoldenArmor == true)
         if (robby.IsAlerted())
         {
             RLog.Msg("[ImprovedKelvin] able to use golden armor");
-
             robbyStats._stats[1]._currentValue = 500f; // anger
             robbyStats._stats[4]._currentValue = 100.0f; // stamina
             robbyStats._stats[8]._currentValue = 0f; // fear
@@ -213,11 +256,76 @@ public class ImprovedKelvin: MonoBehaviour
         {
             PadAction();
         }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            Transform geoFolder = transform.Find("VisualRoot/RobbyRig/Root/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightForeArmTwistNew1/RightForeArmTwistNew2/RightForeArmTwistNew3/RightForeArmTwistNew4/RightHand");
+            for(int i = 0; i < geoFolder.childCount; i++)
+            {
+                var childTransform = geoFolder.GetChild(i);
+                var childGameObject = childTransform.gameObject;
+
+                bool isActive = childGameObject.activeSelf;
+                RLog.Msg($"{childGameObject.name}, isActive={isActive}");
+                if (childTransform.name.Equals("RightHandWeapon") && isActive)
+                {
+                    RLog.Msg("FOUND RightHandWeapon AND ITS ACTIVE");
+                    if (_fakeShotgunInstance == null)
+                    {
+                        var itemData = ItemDatabaseManager.ItemById(358);
+                        if (itemData != null && itemData.HeldPrefab != null)
+                        {
+                            _fakeShotgunInstance = Instantiate(itemData.HeldPrefab).gameObject;
+
+                            if (childTransform.transform != null)
+                            {
+                                _fakeShotgunInstance.transform.SetParent(childTransform.transform, false);
+                                // change to local scale
+                                _fakeShotgunInstance.transform.localPosition = Vector3.zero;
+                                _fakeShotgunInstance.transform.localRotation = Quaternion.identity;
+
+                                var colliders = _fakeShotgunInstance.GetComponentsInChildren<Collider>();
+                                foreach (var c in colliders) c.enabled = false;
+
+                                RLog.Msg("[ImprovedKelvin] Shotgun colada no RightHandWeapon  COM SUCESSO!");
+                            }
+                            else { RLog.Error("[ImprovedKelvin] Child transform are null"); }
+                        }
+                    }
+                }
+            }
+            robby.StartAim();
+
+            if (_fakeShotgunInstance != null)
+            {
+                robby.WeaponShoot(_fakeShotgunInstance);
+            }
+        }
+    }
+    //private Transform FindBone(Transform current, string name)
+    //{
+    //    if (current.name == name) return current;
+    //    for (int i = 0; i < current.childCount; ++i)
+    //    {
+    //        var found = FindBone(current.GetChild(i), name);
+    //        if (found != null) return found;
+    //    }
+    //    return null;
+    //}
+
+    private void OnKelvinFall()
+    {
+        if (robby.IsRobbyInjured() || robby.IsDying())
+        {
+            robby.Revive();
+            robby.DyingRecoverHealth(100f);
+            RLog.Msg("kelvin revivido.");
+        }
     }
 
     private void ChangeArmor(string name)
     {
-        switch(name)
+        switch (name)
         {
             case "add_golden_armor":
                 robby.gameObject.transform.Find(goldenArmor).gameObject.SetActive(value: true);
@@ -251,7 +359,6 @@ public class ImprovedKelvin: MonoBehaviour
         TextureCache.Clear();
         UpdateTextureHandler(_currentRobbyHeadTextureName, true);
         UpdateTextureHandler(_currentTuxedoJacketTextureName, true);
-
     }
 
     public void UpdateMenuText(string text)
@@ -261,9 +368,9 @@ public class ImprovedKelvin: MonoBehaviour
             menuSystem.CustomText = text;
         }
     }
-    private void DeactivateRobbyMesh(string meshPart)
+    private void ToggleActivateRobbyMesh(string meshPart, bool activate)
     {
-        robby.gameObject.transform.Find($"VisualRoot/RobbyRig/GEO/{meshPart}").gameObject.SetActive(false);
-        RLog.Msg($"[Improved Kelvin] {meshPart} deactivated!!!");
+        robby.gameObject.transform.Find($"VisualRoot/RobbyRig/GEO/{meshPart}").gameObject.SetActive(activate);
+        RLog.Msg($"[Improved Kelvin] {meshPart} activate={activate}");
     }
 }
