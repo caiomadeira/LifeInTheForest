@@ -38,8 +38,8 @@ public class LifeInTheForest : SonsMod
     {
         if (BoltNetwork.isServerOrNotRunning)
         {
-            ActorTools.GetPrefab(VailActorTypeId.Robby).gameObject.AddComponent<ImprovedKelvin>();
-            ActorTools.GetPrefab(VailActorTypeId.Robby).gameObject.AddComponent<LITFImprovedVirginia>();
+            ActorTools.GetPrefab(VailActorTypeId.Robby).gameObject.AddComponent<LITFImprovedKelvin>();
+            ActorTools.GetPrefab(VailActorTypeId.Virginia).gameObject.AddComponent<LITFImprovedVirginia>();
             RLog.Msg("LITF Kelvin e Virginia injecteds!!!");
         }
     }
@@ -48,8 +48,7 @@ public class LifeInTheForest : SonsMod
     {
         // This is called once the player spawns in the world and gains control.
         LocalPlayer.FpCharacter.SetWalkSpeed(20);
-        var testc = "Game Started";
-        RLog.Msg($"Minha Variavel: {testc}");
+        LocalPlayer.FpCharacter.SetSuperJump(20);
         _wordInjected = false;
     }
 
@@ -70,12 +69,11 @@ public class LifeInTheForest : SonsMod
             }
         }
 
-
-        if ((Input.GetKeyDown(KeyCode.F2)))
-        {
-            SetupTimmy();
-            SonsTools.ShowMessage("Timmy foi spawnado", 10.0f);
-        }
+        //if ((Input.GetKeyDown(KeyCode.F2)))
+        //{
+        //    SetupTimmy();
+        //    SonsTools.ShowMessage("Timmy foi spawnado", 10.0f);
+        //}
     }
 
     private void DebugUI()

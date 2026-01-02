@@ -11,7 +11,7 @@ public static class Config
     public static ConfigEntry<bool> enableAging { get; private set; }
 
     // Auto populated after calling SettingsRegistry.CreateSettings...
-    private static SettingsRegistry.SettingsEntry _settingsEntry;
+   //  private static SettingsRegistry.SettingsEntry _settingsEntry;
 
     public static void Init()
     {
