@@ -2,8 +2,10 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\man
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\LifeInTheForest.deps.json
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\LifeInTheForest.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\LifeInTheForest.pdb
+C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\0Harmony.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\bolt.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\bolt.user.dll
+C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.HarmonySupport.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.Runtime.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2Cppmscorlib.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\RedLoader.dll
@@ -18,6 +20,7 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Son
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\SonsSdk.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Unity.TextMeshPro.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.AnimationModule.dll
+C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.AssetBundleModule.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.CoreModule.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.ImageConversionModule.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.IMGUIModule.dll
@@ -25,15 +28,14 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Uni
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.PhysicsModule.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.UI.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.UIModule.dll
+C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Mono.Cecil.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\udpkit.common.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\udpkit.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppSystem.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppSystem.Core.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.Common.dll
-C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\0Harmony.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\MonoMod.Utils.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Tomlet.dll
-C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Mono.Cecil.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Alt.Json.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\SemanticVersioning.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\AssetRipper.Primitives.dll
@@ -42,7 +44,6 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Cpp
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.Generator.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\MonoMod.RuntimeDetour.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\LibCpp2IL.dll
-C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.HarmonySupport.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\AsmResolver.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Unity.InputSystem.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Sons.Input.dll
@@ -111,7 +112,6 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Son
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Crest.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\MicroSplatChanges.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.WindModule.dll
-C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.AssetBundleModule.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\GLTF.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\OSK.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.TextCoreFontEngineModule.dll
@@ -161,6 +161,7 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Mon
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.SubsystemsModule.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Unity.Timeline.dll
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Unity.Burst.dll
+C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.HarmonySupport.xml
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.Runtime.xml
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\RedLoader.xml
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\SonsSdk.xml
@@ -168,8 +169,6 @@ C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Uni
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.InputLegacyModule.pdb
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.Common.xml
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.Generator.xml
-C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\Il2CppInterop.HarmonySupport.xml
-C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.SharedInternalsModule.pdb
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\bin\Debug\net6\UnityEngine.TextCoreTextEngineModule.pdb
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\obj\Debug\net6\LifeInTheForest.csproj.AssemblyReference.cache
 C:\Users\caiom\OneDrive\Desktop\sofmod\Github\LifeInTheForest\obj\Debug\net6\LifeInTheForest.GeneratedMSBuildEditorConfig.editorconfig

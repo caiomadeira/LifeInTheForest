@@ -20,7 +20,7 @@ public class LITFKelvinWeaponSystem
 {
     // --- robby --- 
     private VailActor robby;
-    private Sons.Gameplay.MeleeWeapon kickWeapon;
+    // private Sons.Gameplay.MeleeWeapon kickWeapon;
     private KelvinConfig currentConfig;
     // --- weapons sys ---
     private GameObject _fakeWeaponInstance;

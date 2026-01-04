@@ -42,7 +42,7 @@ public struct KelvinConfig
 {
     // -- main ---
     public string stageName;
-    public int minYear;
+    public int startingThreshold;
 
     // -- visuals ---
     public string headTexture;

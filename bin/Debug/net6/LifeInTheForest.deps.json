@@ -8,8 +8,10 @@
     ".NETCoreApp,Version=v6.0": {
       "LifeInTheForest/1.0.0": {
         "dependencies": {
+          "0Harmony": "2.10.1.0",
           "bolt": "0.4.3.4",
           "bolt.user": "0.0.0.0",
+          "Il2CppInterop.HarmonySupport": "1.4.6.0",
           "Il2CppInterop.Runtime": "1.4.6.0",
           "Il2Cppmscorlib": "4.0.0.0",
           "RedLoader": "0.8.6.0",
@@ -24,6 +26,7 @@
           "SonsSdk": "0.8.6.0",
           "Unity.TextMeshPro": "0.0.0.0",
           "UnityEngine.AnimationModule": "0.0.0.0",
+          "UnityEngine.AssetBundleModule": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine.ImageConversionModule": "0.0.0.0",
           "UnityEngine.IMGUIModule": "0.0.0.0",
@@ -34,6 +37,14 @@
         },
         "runtime": {
           "LifeInTheForest.dll": {}
+        }
+      },
+      "0Harmony/2.10.1.0": {
+        "runtime": {
+          "0Harmony.dll": {
+            "assemblyVersion": "2.10.1.0",
+            "fileVersion": "2.10.1.0"
+          }
         }
       },
       "bolt/0.4.3.4": {
@@ -49,6 +60,14 @@
           "bolt.user.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Il2CppInterop.HarmonySupport/1.4.6.0": {
+        "runtime": {
+          "Il2CppInterop.HarmonySupport.dll": {
+            "assemblyVersion": "1.4.6.0",
+            "fileVersion": "1.4.6.0"
           }
         }
       },
@@ -164,6 +183,14 @@
           }
         }
       },
+      "UnityEngine.AssetBundleModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.AssetBundleModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.CoreModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.CoreModule.dll": {
@@ -220,6 +247,14 @@
           }
         }
       },
+      "Mono.Cecil/0.11.4.0": {
+        "runtime": {
+          "Mono.Cecil.dll": {
+            "assemblyVersion": "0.11.4.0",
+            "fileVersion": "0.11.4.0"
+          }
+        }
+      },
       "udpkit.common/0.5.0.0": {
         "runtime": {
           "udpkit.common.dll": {
@@ -260,14 +295,6 @@
           }
         }
       },
-      "0Harmony/2.10.1.0": {
-        "runtime": {
-          "0Harmony.dll": {
-            "assemblyVersion": "2.10.1.0",
-            "fileVersion": "2.10.1.0"
-          }
-        }
-      },
       "MonoMod.Utils/22.7.31.1": {
         "runtime": {
           "MonoMod.Utils.dll": {
@@ -281,14 +308,6 @@
           "Tomlet.dll": {
             "assemblyVersion": "5.4.0.0",
             "fileVersion": "5.4.0.0"
-          }
-        }
-      },
-      "Mono.Cecil/0.11.4.0": {
-        "runtime": {
-          "Mono.Cecil.dll": {
-            "assemblyVersion": "0.11.4.0",
-            "fileVersion": "0.11.4.0"
           }
         }
       },
@@ -353,14 +372,6 @@
           "LibCpp2IL.dll": {
             "assemblyVersion": "2022.1.0.0",
             "fileVersion": "2022.1.0.0"
-          }
-        }
-      },
-      "Il2CppInterop.HarmonySupport/1.4.6.0": {
-        "runtime": {
-          "Il2CppInterop.HarmonySupport.dll": {
-            "assemblyVersion": "1.4.6.0",
-            "fileVersion": "1.4.6.0"
           }
         }
       },
@@ -908,14 +919,6 @@
           }
         }
       },
-      "UnityEngine.AssetBundleModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.AssetBundleModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "GLTF/0.8.6.0": {
         "runtime": {
           "GLTF.dll": {
@@ -1316,12 +1319,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "0Harmony/2.10.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "bolt/0.4.3.4": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "bolt.user/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Il2CppInterop.HarmonySupport/1.4.6.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1396,6 +1409,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.AssetBundleModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.CoreModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1431,6 +1449,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Mono.Cecil/0.11.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "udpkit.common/0.5.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1456,22 +1479,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "0Harmony/2.10.1.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "MonoMod.Utils/22.7.31.1": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "Tomlet/5.4.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Mono.Cecil/0.11.4.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1512,11 +1525,6 @@
       "sha512": ""
     },
     "LibCpp2IL/2022.1.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Il2CppInterop.HarmonySupport/1.4.6.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1857,11 +1865,6 @@
       "sha512": ""
     },
     "UnityEngine.WindModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.AssetBundleModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

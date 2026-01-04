@@ -1,26 +1,20 @@
 ﻿
-using Il2CppSystem.Runtime.Remoting.Messaging;
 using RedLoader;
-using RedLoader.Utils;
 using Sons.Ai.Vail;
-using Sons.Gameplay;
-using Sons.Items;
-using Sons.Items.Core;
 using Sons.StatSystem;
-using SonsSdk;
-using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
-using TheForest.Utils;
 using UnityEngine;
-using static CoopPlayerUpgrades;
-using static Il2CppMono.Globalization.Unicode.SimpleCollator;
-using static RedLoader.RLog;
-
 namespace LifeInTheForest;
 
 [RegisterTypeInIl2Cpp]
 public class LITFImprovedKelvin: MonoBehaviour
 {
+    private class OutfitOption
+    {
+        public string name;
+        public List<string> meshesToEnable;
+        public int baseWeight;
+    }
+
     // --- singleton
     public static LITFImprovedKelvin Instance { get; private set; }
 
@@ -36,24 +30,56 @@ public class LITFImprovedKelvin: MonoBehaviour
     private BaseTextureHandler robbyHeadTextureHandler;
     private BaseTextureHandler robbyTuxedoJacketTextureHandler;
     private BaseTextureHandler robbyHoddieTextureHandler;
+    // config
     public KelvinArmorType armorType;
 
     // --- robby paths ---
-    const string goldenArmor = "VisualRoot/RobbyRig/GEO/GoldenArmor";
-    const string tuxedoJacketMesh = "VisualRoot/RobbyRig/GEO/TuxedoJacketMesh";
-    const string hoddieMesh = "VisualRoot/RobbyRig/GEO/HoodieMesh";
-    const string tacticalHelmet1 = "VisualRoot/RobbyRig/GEO/TacticalArmorHeadHelmetMesh"; // no texture
-    const string tacticalHelmet2 = "VisualRoot/RobbyRig/GEO/helmet"; // no texture
-    const string tacticalBodyArmor = "VisualRoot/RobbyRig/GEO/body_armor";
-    const string tacticalBoots = "VisualRoot/RobbyRig/GEO/boots";
+    const string visualRoot = "VisualRoot/RobbyRig/GEO";
+    const string goldenArmor = $"{visualRoot}/GoldenArmor";
+    const string tuxedoJacketMesh = $"{visualRoot}/TuxedoJacketMesh";
+    const string tuxedoPantsMesh = $"{visualRoot}/TuxedoPantsMesh";
+    const string tuxedoShoesMesh = $"{visualRoot}/TuxedoShoesMesh";
+    const string hoddieMesh = $"{visualRoot}/HoodieMesh";
+    const string tacticalHelmet1 = $"{visualRoot}/TacticalArmorHeadHelmetMesh"; // no texture
+    const string tacticalHelmet2 = $"{visualRoot}/hemlet"; // no texture
+    const string tacticalBodyArmor = $"{visualRoot}/body_armor";
+    const string tacticalBoots = $"{visualRoot}/boots";
+    const string beard = $"{visualRoot}/RobbyBeard";
+    const string head = $"{visualRoot}/RobbyHead";
+    const string hair = $"{visualRoot}/RobbyHair";
+    const string suitMesh = $"{visualRoot}/SuitMesh";
+    const string jacket = $"{visualRoot}/jacket";
+    const string boots = $"{visualRoot}/boots";
+    const string gloves = $"{visualRoot}/gloves";
+    const string sunglasses = $"{visualRoot}/sunglasses";
+    const string pants = $"{visualRoot}/pants";
+    const string mask = $"{visualRoot}/mask";
+    const string pyjamasMesh = $"{visualRoot}/PyjamasMesh";
+    const string leatherJacketMesh = $"{visualRoot}/LeatherJacketMesh";
+    const string leatherJacketUnderShirt = $"{visualRoot}/LeatherJacketUnderShirt";
+    const string priestOutfitShirt = $"{visualRoot}/PriestOutfitShirt";
+    const string priestOutfitPants = $"{visualRoot}/PriestOutfitPants";
+    const string spaceSuitABodyMesh = $"{visualRoot}/SpaceSuitABodyMesh";
+    const string pyjamasBootsMesh = $"{visualRoot}/PyjamasBootsMesh";
+    const string leftHand = $"{visualRoot}/LeftHandTrim";
+    const string rightHand = $"{visualRoot}/RightHandTrim";
+
+    //private Mesh originalSourceMesh;
+    //private Material originalSourceMaterial;
 
     // -- Control Variables ---
-    private int _lastCheckedYear = -1;
-    private bool _initLITFWorld = false;
+    private int _lastCheckedTimeValue = -1;
     private bool _isCosmeticArmorActive = false;
     private float _nextReviveCheckTime = 0f;
+    private bool robbyStatsManagerInstance = false;
     private bool activateLITFKelvinWeaponSystem = false;
-    private bool _inventoryHackApplied = false;
+    // private bool _beardPrefabInitialized = false;
+    private bool _wasInitialized = false;
+    private bool _graveSpawned = false;
+    private string _currentOutfitName = "";
+    private bool _wasNight = false;
+    private int _lastDayCheck = -1;
+
     // --- weapon system ---
     private LITFKelvinWeaponSystem weaponSystem;
 
@@ -62,137 +88,49 @@ public class LITFImprovedKelvin: MonoBehaviour
 
     // --- robby variables ---
     private List<KelvinConfig> _agingConfigs = new List<KelvinConfig>();
-    private KelvinConfig currentConfig;
+    private List<OutfitOption> _wardrobe = new List<OutfitOption>();
+    Dictionary<OutfitOption, int> _cachedWeights = new Dictionary<OutfitOption, int>();
 
+    private KelvinConfig currentConfig;
     public void Awake()
     {
-        Instance = this;
-        this.robby = GetComponent<VailActor>();
-        if (robby == null) { RLog.Error("[Improved Kelvin] robby (VailActor) == null."); return; }
-        SetupAgingConfig();
-        if (activateLITFKelvinWeaponSystem) this.weaponSystem = new LITFKelvinWeaponSystem(robby, (int)WeaponId.Shotgun, currentConfig);
+        try
+        {
+            Instance = this;
+            robby = GetComponent<VailActor>();
+            SetupKelvinConfig();
+            if (Config.Stage1Category == null) { return; } else { SetConfigForYear(0); }
+        }
+        catch (System.Exception e) { RLog.Error($"[LITF Improved Kelvin]: {e}"); }
     }
     public void Start()
     {
-        // -- kelvin textures
-        SetupKelvinTextures();
-        // -- kelvin menu pad ---
-        menuSystem = this.gameObject.AddComponent<LITFKelvinMenu>();
-        if (menuSystem == null ) RLog.Msg("[Improved Kelvin] menuSystem == NULL.");
-        SetupKelvinStats();
-        // --- update --- 
-        //UpdateKelvinState(0, true);
-        KelvinDumpConfig(currentConfig);
-        var logItem = ItemDatabaseManager.ItemById(78);
-        if (logItem != null)
+        try
         {
-            logItem.MaxAmount = 4; // Diz ao DB que logs stackam até 4
-            RLog.Msg("[Improved Kelvin] Log Item MaxAmount set to 4.");
+            if (robby == null) { return; }
+
+            SetupKelvinTextures();
+            SetupKelvinStats();
+            SetupMenuPad();
+            SetupWardrobe();
+
+            _wasInitialized = true;
+            RLog.Msg("[Improved Kelvin] started.");
         }
-
-        
-    }
-
-    private void ApplyLogInventoryHack()
-    {
-        RLog.Msg("[Improved Kelvin] Tentando aplicar Hack de Logs...");
-
-        // 1. Aumenta o limite no banco de dados do item
-        var logItem = ItemDatabaseManager.ItemById(78);
-        if (logItem != null)
-        {
-            logItem.MaxAmount = 4;
-            RLog.Msg($"[Improved Kelvin] Item 78 (Log) MaxAmount alterado para: {logItem.MaxAmount}");
-        }
-
-        // 2. Hack dos Slots Visuais (CLONAGEM)
-        var attachList = robby._inventoryManager._carryAttachments;
-        foreach (var att in attachList)
-        {
-            // Procura o attachment de Logs
-            if (att != null && att._itemTypes.Contains("Log"))
-            {
-                var transformsList = att._transforms;
-
-                // Só aplica se tiver os 2 originais (evita duplicar infinito se recarregar)
-                if (transformsList.Count > 0 && transformsList.Count <= 2)
-                {
-                    // Pega o último slot válido (o segundo log no ombro)
-                    var originalTransform = transformsList[transformsList.Count - 1];
-
-                    // --- O PULO DO GATO: INSTANTIATE ---
-                    // Em vez de adicionar o mesmo, criamos uma CÓPIA do GameObject na hierarquia
-                    // Isso cria um novo "bone" invisível na mesma posição do anterior.
-
-                    // Slot 3
-                    var newSlot3 = UnityEngine.Object.Instantiate(originalTransform.gameObject, originalTransform.parent);
-                    newSlot3.name = "HoldLog3"; // Nome para debug
-                    transformsList.Add(newSlot3.transform);
-
-                    // Slot 4
-                    var newSlot4 = UnityEngine.Object.Instantiate(originalTransform.gameObject, originalTransform.parent);
-                    newSlot4.name = "HoldLog4"; // Nome para debug
-                    transformsList.Add(newSlot4.transform);
-                    att._endTransform = newSlot4.transform;
-                    RLog.Msg($"[Improved Kelvin] SUCESSO! Slots de Logs aumentados para: {transformsList.Count}");
-                }
-                else
-                {
-                    RLog.Msg($"[Improved Kelvin] Hack pulado. Slots atuais: {transformsList.Count}");
-                }
-                break;
-            }
-        }
+        catch (System.Exception e) { RLog.Error($"[LITF Improved Kelvin]: {e}"); }
     }
     public void Update()
     {
-        //var attachList = robby._inventoryManager._carryAttachments;
-        //Sons.Ai.Vail.Inventory.CarryAttachments logAttach = null;
-        //foreach (var att in attachList)
-        //{
-        //    if (att._itemTypes.Contains("Log"))
-        //    {
-        //        logAttach = att;
-        //        break;
-        //    }
-        //}
+        if (!_wasInitialized) return;
+        OnTimeChanged();
+        CheckOutfitChange();
 
-        //if (logAttach != null)
-        //{
-        //    var transformsList = logAttach._transforms;
-        //    if (transformsList.Count > 0)
-        //    {
-        //        var lastTransform = transformsList[transformsList.Count - 1];
-        //        transformsList.Add(lastTransform);
-        //        transformsList.Add(lastTransform);
-        //    }
-        //}
-
-        if (!_inventoryHackApplied)
-        {
-            // Verifica se o Robby e o InventoryManager já existem
-            if (robby != null && robby._inventoryManager != null && robby._inventoryManager._carryAttachments != null)
-            {
-                ApplyLogInventoryHack();
-                _inventoryHackApplied = true; // Trava para não rodar de novo
-            }
-        }
-
-        if (!_initLITFWorld) CheckInitLITFWorld();
-        else CheckYearChange();
-
+        if (!robbyStatsManagerInstance) CheckStatsInstance();
         HandleCombatState();
-
-        if (this.robbyStats == null)
-        {
-            if (robby._statsManager != null)
-            {
-                this.robbyStats = robby._statsManager._statsManager;
-            }
-        }
 
         if (Time.time > _nextReviveCheckTime)
         {
+            HandleDeath();
             CheckReviveCondition();
             _nextReviveCheckTime = Time.time + 5.0f;
         }
@@ -203,214 +141,95 @@ public class LITFImprovedKelvin: MonoBehaviour
 
     private void Controls()
     {
-
-        if (Input.GetKeyDown(KeyCode.G)) PadAction();
-
-        if (Input.GetKeyDown(KeyCode.F10))
+        if (LITFDebug.isDebugActive)
         {
-            UpdateKelvinState(0, true);
-            RLog.Msg($"kelvin state 0.");
-        }
+            if (Input.GetKeyDown(KeyCode.G)) PadAction();
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                UpdateKelvinState(0, true);
+                RLog.Msg($"kelvin state 0.");
+            }
 
-        if (Input.GetKeyDown(KeyCode.F9))
-        {
-            UpdateKelvinState(1, true);
-            RLog.Msg($"kelvin state 1.");
-        }
-
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            if (activateLITFKelvinWeaponSystem)
-                weaponSystem.LITFKelvinWeaponSystemUpdate();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
-           
-            //var attachmentsList = robby._inventoryManager._carryAttachments;
-            //foreach(var attachment in attachmentsList)
-            //{
-            //    RLog.Msg($"item type: {attachment._itemTypes}");
-            //}
-            //// robby.TryGiveItem(78, out int itemReturned);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            KelvinDumpInfo();
+            if (Input.GetKeyDown(KeyCode.F6))
+            {
+                //if (activateLITFKelvinWeaponSystem)
+                //    weaponSystem.LITFKelvinWeaponSystemUpdate();
+                HandleDeath();
+            }
         }
     }
-    private void SetupAgingConfig()
+    private void CheckStatsInstance()
     {
-        _agingConfigs.Add(new KelvinConfig
+        if (this.robbyStats == null)
         {
-            // -- main ---
-            stageName = "Young",
-            minYear = 0,
-            // -- visuals ---
-            headTexture = "RobbyHeadYoung1",
-            tuxedoTexture = "TuxedoJacketMesh",
-            hoddieTexture = "HoodieMesh",
-            hasBeard = false,
-            hasHair = true,
-            armorType = KelvinArmorType.Military,
-            // -- stats --
-            maxHealth = 100f,
-            maxStamina = 100f,
-            maxHeartRateStat = 100f,
-            maxFullness = 100f,
-            maxFear = 100f,
-            maxAnger = 20f,
-            staggerLevel = 0,
-            staggerPerHit = 0.8f,
-            // multipliers
-            moveSpeedMultiplier = 2,
-            blockDamageMultiplier = 0.5f,
-            // -- behavior --
-            canCombat = false,
-            canUseWeapons = false,
-            canRevive = true,
-            removeBehaviors = false,
-            canUseCosmeticArmor = false,
-            onlyKilledByPlayer = false,
-            canBlockAttack = false,
-            // -- other behaviors ---
-            shotgunKnockbackTime = 5.0f,
-            meleeWeaponDamage = 20.0f,
-        });
-
-        _agingConfigs.Add(new KelvinConfig
-        {
-            stageName = "Experienced",
-            minYear = 1,
-            headTexture = "RobbyHeadOld2",
-            tuxedoTexture = "RobbyTuxedo2",
-            hoddieTexture = "RobbyHoodie1",
-            hasBeard = true,
-            hasHair = true,
-            maxHealth = 120f,
-            maxStamina = 110f,
-            maxHeartRateStat = 100f,
-            maxFullness = 100f,
-            maxFear = 70f,
-            maxAnger = 100f,
-            meleeWeaponDamage = 50.0f,
-            moveSpeedMultiplier = 5,
-            canCombat = true,
-            canUseWeapons = false,
-            canRevive = true,
-            removeBehaviors = true,
-            canUseCosmeticArmor = false,
-            armorType = KelvinArmorType.Military,
-            onlyKilledByPlayer = false,
-            canBlockAttack = true,
-            shotgunKnockbackTime = 2.0f,
-            blockDamageMultiplier = 0.5f,
-            staggerLevel = 1,
-            staggerPerHit = 0.4f,
-        });
-
-        _agingConfigs.Add(new KelvinConfig
-        {
-            stageName = "Veteran",
-            minYear = 2,
-            headTexture = "RobbyHeadOld3",
-            tuxedoTexture = "RobbyTuxedo2",
-            hoddieTexture = "RobbyHoodie1",
-            hasBeard = true,
-            hasHair = true,
-            maxHealth = 120f,
-            maxStamina = 110f,
-            maxHeartRateStat = 80f,
-            maxFullness = 90f,
-            maxFear = 20f,
-            maxAnger = 200f,
-            meleeWeaponDamage = 100.0f,
-            moveSpeedMultiplier = 10,
-            canCombat = true,
-            canUseWeapons = true,
-            canRevive = true,
-            removeBehaviors = true,
-            canUseCosmeticArmor = true,
-            armorType = KelvinArmorType.Golden,
-            onlyKilledByPlayer = false,
-            canBlockAttack = true,
-            shotgunKnockbackTime = 0.75f,
-            blockDamageMultiplier = 0.1f,
-            staggerLevel = 2,
-            staggerPerHit = 0.2f,
-        });
-
-        _agingConfigs.Add(new KelvinConfig
-        {
-            stageName = "Old",
-            minYear = 3,
-            headTexture = "RobbyHeadOld5",
-            tuxedoTexture = "RobbyTuxedo3",
-            hoddieTexture = "RobbyHoodie1",
-            hasBeard = true,
-            hasHair = false,
-            maxHealth = 200f,
-            maxStamina = 50f,
-            maxHeartRateStat = 50f,
-            maxFullness = 80f,
-            maxFear = 10f,
-            maxAnger = 200f,
-            meleeWeaponDamage = 200.0f,
-            moveSpeedMultiplier = 1,
-            canCombat = true,
-            canUseWeapons = true,
-            canRevive = false,
-            removeBehaviors = true,
-            canUseCosmeticArmor = true,
-            armorType = KelvinArmorType.Golden,
-            onlyKilledByPlayer = false,
-            canBlockAttack = true,
-            shotgunKnockbackTime = 0.1f,
-            blockDamageMultiplier = 0.1f,
-            staggerLevel = 1,
-            staggerPerHit = 0.1f,
-        });
-        RLog.Msg("[Improved Kelvin] Aging Config done.");
+            if (robby._statsManager != null)
+            {
+                this.robbyStats = robby._statsManager._statsManager;
+                robbyStatsManagerInstance = true;
+            }
+        }
     }
 
-    private void UpdateKelvinState(int year, bool forceUpdate = false)
+    private void UpdateKelvinState(int timeValue, bool forceUpdate = false)
     {
-        KelvinConfig newConfig = _agingConfigs[0];
-        foreach(var config in _agingConfigs)
+        if (Config.Stage1Category == null || Config.Stage2Category == null || Config.Stage3Category == null || Config.Stage4Category == null)
         {
-            if (year >= config.minYear) newConfig = config;
+            RLog.Error("[ImprovedKelvin] FATAL ERROR: Configs not loaded."); 
+            return;
         }
 
-        currentConfig = newConfig;
+        try
+        {
+            SetConfigForYear(timeValue);
 
-        // -- -behaviors
-        CheckIfAbleToUseGoldenArmor();
+            // -- -behaviors
+            CheckIfAbleToUseGoldenArmor();
 
-        RLog.Msg($"[ImprovedKelvin] Updating to Stage: {currentConfig.stageName} (Year {year})");
+            RLog.Msg($"[ImprovedKelvin] Updating to Stage: {currentConfig.stageName} (Time Value: {timeValue})");
 
-        if (robbyHeadTextureHandler != null) robbyHeadTextureHandler.SetTexture(currentConfig.headTexture);
-        if (robbyTuxedoJacketTextureHandler != null) robbyTuxedoJacketTextureHandler.SetTexture(currentConfig.tuxedoTexture);
-        if (robbyHoddieTextureHandler != null) robbyHoddieTextureHandler.SetTexture(currentConfig.hoddieTexture);
+            if (robbyHeadTextureHandler != null) robbyHeadTextureHandler.SetTexture(currentConfig.headTexture);
+            if (robbyTuxedoJacketTextureHandler != null) robbyTuxedoJacketTextureHandler.SetTexture(currentConfig.tuxedoTexture);
+            if (robbyHoddieTextureHandler != null) robbyHoddieTextureHandler.SetTexture(currentConfig.hoddieTexture);
 
-        ToggleActivateRobbyMesh("RobbyBeard", currentConfig.hasBeard);
-        ToggleActivateRobbyMesh("RobbyHair", currentConfig.hasHair);
+            ToggleActivateRobbyMesh(beard, currentConfig.hasBeard);
+            ToggleActivateRobbyMesh(hair, currentConfig.hasHair);
 
-        // -- stats ---
-        SetupKelvinStats();
+            // -- stats ---
+            if (robby._statsManager._statsManager == null)
+                SetupKelvinStats();
 
-        // -- Kick Attack 
-        SetupKelvinKickAttack();
-        // --- behavior
-        SetupKelvinBehavior();
+            // -- Kick Attack 
+            SetupKelvinKickAttack();
+            // --- behavior
+            SetupKelvinBehavior();
+        } catch (System.Exception e) { RLog.Error($"[ImprovedKelvin] Error: {e}");  }
+    }
 
+    private void SetConfigForYear(int timeValue)
+    {
+        if (_agingConfigs.Count == 0) SetupKelvinConfig();
+
+        if (_agingConfigs.Count == 0)
+        {
+            return;
+        }
+        KelvinConfig found = _agingConfigs[0]; // the list is ordered
+        foreach(var cfg in _agingConfigs)
+        {
+            if (timeValue >= cfg.startingThreshold) { found = cfg; }
+        }
+        currentConfig = found;
     }
     private void HandleCombatState()
     {
         bool isInCombat = robby.IsAlerted();
         bool shouldHaveArmor = currentConfig.canUseCosmeticArmor && isInCombat;
         bool shouldHaveWeapon = currentConfig.canUseWeapons && isInCombat;
-        if (isInCombat) SetStatCurrentValue((int)ActorStatsIndex.AngerStat, currentConfig.maxAnger);
+        if (isInCombat && currentConfig.stageName != "Young")
+        {
+            SetStatCurrentValue((int)ActorStatsIndex.AngerStat, currentConfig.maxAnger);
+            SetStatCurrentValue((int)ActorStatsIndex.FearStat, 0f);
+        }
 
         if (shouldHaveArmor != _isCosmeticArmorActive)
         {
@@ -422,7 +241,7 @@ public class LITFImprovedKelvin: MonoBehaviour
             weaponSystem.LITFKelvinWeaponSystemHandleCombatState(shouldHaveWeapon);
     }
 
-    private void SetupKelvinStats()
+    private bool SetupKelvinStats()
     {
         if (robby._statsManager != null)
         {
@@ -431,13 +250,25 @@ public class LITFImprovedKelvin: MonoBehaviour
             robbyStats._stats[(int)ActorStatsIndex.AngerStat].SetMax(currentConfig.maxAnger); // 500f
             robbyStats._stats[(int)ActorStatsIndex.FearStat].SetMax(currentConfig.maxFear); // 0f
             robbyStats._stats[(int)ActorStatsIndex.FullnessStat].SetMax(currentConfig.maxFullness);
-            robbyStats._stats[(int)ActorStatsIndex.FullnessStat].SetMax(currentConfig.maxHeartRateStat);
+            robbyStats._stats[(int)ActorStatsIndex.HeartRateStat].SetMax(currentConfig.maxHeartRateStat);
+            if (currentConfig.stageName == "Old" || currentConfig.stageName == "Veteran")
+            {
+                robbyStats._stats[(int)ActorStatsIndex.AngerStat].SetCurrentValue(currentConfig.maxAnger);
+            }
+            return true;
         }
-        else { RLog.Error("[Improved Kelvin] (robby._statsManager == null."); }
+        else { return false; }
     }
+
 
     private void SetStatCurrentValue(int stats, float value) => this.robbyStats._stats[stats].SetCurrentValue(value);
     private void SetStatDefaultValue(int stats, float value) => this.robbyStats._stats[stats].SetDefaultValue(value);
+    private void SetupMenuPad()
+    {
+        menuSystem = this.gameObject.AddComponent<LITFKelvinMenu>();
+        if (menuSystem == null) RLog.Msg("[Improved Kelvin] menuSystem == NULL.");
+        RLog.Msg("[Improved Kelvin] SetupMenuPad done.");
+    }
     private void SetupKelvinKickAttack()
     {
         if (currentConfig.canCombat)
@@ -449,10 +280,8 @@ public class LITFImprovedKelvin: MonoBehaviour
                     kickWeapon = robby._meleeWeapons[0]._gameObject.GetComponent<Sons.Gameplay.MeleeWeapon>();
                     if (kickWeapon != null) kickWeapon._damage = currentConfig.meleeWeaponDamage;
                 }
-                RLog.Msg("[Improved Kelvin] Robby Cant Use Weapons. Using Melee attack  currentConfig.meleeWeaponDamage.");
             }
-            else  RLog.Msg("[Improved Kelvin] Robby Cant Use Weapons.");
-        } else RLog.Msg("[Improved Kelvin] Robby Cant Combat.");
+        }
     }
 
     private void SetupKelvinBehavior()
@@ -463,19 +292,14 @@ public class LITFImprovedKelvin: MonoBehaviour
             robbyCombatSet = robbyController.GetStateSet(State.Combat);
             if (robbyCombatSet != null)
             {
-                for (int i = 0; i < robbyCombatSet._groupsList.Count; i++)
-                {
-                    RLog.Msg($"[Improved Kelvin]Robby group list {i}: {robbyCombatSet._groupsList[i].Name}");
-
-                }
                 var behaviorToRemove = new System.Collections.Generic.List<string>
                 {
                     "Robby Cower", "Flee From Enemies", "Robby Back Away", "Point At Enemy", "Lost Sight Of Enemy", "Disengage Combat", "Hide Behind Player", "Watch Enemy",
                 };
                 FilterGroups(robbyCombatSet, behaviorToRemove);
-                RLog.Msg("[Improved Kelvin] behaviors removed.");
+                // RLog.Msg("[Improved Kelvin] behaviors removed.");
             }
-        } else RLog.Msg("[Improved Kelvin] robby Controller is null or canCombat is false.");
+        }
 
         robby._onlyStaggeredByPlayer = currentConfig.onlyKilledByPlayer;
         robby._damageController.SetBlocking(currentConfig.canBlockAttack);
@@ -483,16 +307,19 @@ public class LITFImprovedKelvin: MonoBehaviour
         robby._shotgunKnockbackTime = currentConfig.shotgunKnockbackTime;
     }
 
-    private void SetupKelvinTextures()
+    private bool SetupKelvinTextures()
     {
-        robbyHeadTextureHandler = new BaseTextureHandler("RobbyHead", VailActorTypeId.Robby, "VisualRoot/RobbyRig/GEO/RobbyHead", 0);
+        robbyHeadTextureHandler = new BaseTextureHandler("RobbyHead", VailActorTypeId.Robby, head, 0);
         robbyTuxedoJacketTextureHandler = new BaseTextureHandler("TuxedoJacketMesh", VailActorTypeId.Robby, tuxedoJacketMesh, 0);
         robbyHoddieTextureHandler = new BaseTextureHandler("HoodieMesh", VailActorTypeId.Robby, hoddieMesh, 0);
 
         if (robbyHeadTextureHandler == null || robbyTuxedoJacketTextureHandler == null || robbyHoddieTextureHandler == null)
+        {
             RLog.Error("[Improved Kelvin] some (or more than one) of robbyHeadTextureHandler, TuxedoHandler or HoddieHandler is null.");
-
-        RLog.Msg("[ImprovedKelvin] SetupKelvinTextures successfully initialized.");
+            return false;
+        }
+        RLog.Msg("[ImprovedKelvin] Textures done!");
+        return true;
     }
 
     private void CheckReviveCondition()
@@ -501,9 +328,10 @@ public class LITFImprovedKelvin: MonoBehaviour
         var currentState = robby.IsRobbyInjured() || robby._hasInjuredState;
         if (currentState)
         {
-            RLog.Msg("[ImprovedKelvin] Kelvin can't take this. By the age...");
             robby.SetDead(true);
         }
+
+        HandleDeath();
     }
 
     private void CheckIfAbleToUseGoldenArmor()
@@ -514,23 +342,32 @@ public class LITFImprovedKelvin: MonoBehaviour
         if ((stayed || escaped))
         {
             currentConfig.IsAbleToUseGoldenArmor = true;
-            RLog.Msg($"[ImprovedKelvin] STATUS CONFIRMADO: Jogador terminou o jogo Stay: {stayed}). Armadura Dourada HABILITADA.");
         }
         else {
             currentConfig.IsAbleToUseGoldenArmor = false;
-            RLog.Msg("not able to use golden armor"); 
         }
     }
 
-    private void CheckInitLITFWorld()
+    private void OnTimeChanged()
     {
         if (LITFWorld.Instance != null && LITFWorld.Instance.IsInitialized)
         {
-            _initLITFWorld = true;
-            RLog.Msg("[Improved Kelvin] Conectado ao LITFWorld (Dados Sincronizados).");
-            CheckYearChange();
+            int currentTime = LITFWorld.Instance.GetCurrentAgeValue();
+            if (currentTime != _lastCheckedTimeValue)
+            {
+                _lastCheckedTimeValue = currentTime;
+                try { 
+                    UpdateKelvinState(currentTime, true);
+                    try
+                    {
+                        string unit = Config.AgingGranularity.Value;
+                        RLog.Msg($"[LITFImprovedKelvin] Time was passed. New value= {currentTime}, unit= ({unit})");
+                    } catch (System.Exception e) { RLog.Error($"Error on UpdateKelvinState (unit): {e.Message}"); }
+                    LITFDebug.KelvinDumpConfig(currentConfig, true);  
+                }
+                catch (System.Exception e) { RLog.Error($"Error on UpdateKelvinState: {e.Message}"); }
+            }
         }
-        else RLog.Error("[Improved Kelvin] LTIFWorld.Instance == null.");
     }
     private void FilterGroups(StateSet stateSet, System.Collections.Generic.List<string> toRemove)
     {
@@ -540,7 +377,6 @@ public class LITFImprovedKelvin: MonoBehaviour
         {
             GroupListItem current = enumerator.Current;
             if (!toRemove.Contains(current.Name)) cleanedList.Add(current);
-            else RLog.Msg($"Removendo comportamento: {current.Name}");
         }
 
         stateSet._groupsList = cleanedList;
@@ -582,175 +418,374 @@ public class LITFImprovedKelvin: MonoBehaviour
     public void UpdateMenuText(string text) { if (menuSystem != null) menuSystem.CustomText = text; }
     private void ToggleActivateRobbyMesh(string meshPart, bool activate)
     {
-        robby.gameObject.transform.Find($"VisualRoot/RobbyRig/GEO/{meshPart}").gameObject.SetActive(activate);
+        robby.gameObject.transform.Find(meshPart).gameObject.SetActive(activate);
         RLog.Msg($"[Improved Kelvin] {meshPart} activate={activate}");
     }
-
-    private void CheckYearChange()
+    private void SetupKelvinConfig()
     {
-        if (LITFWorld.Instance != null && LITFWorld.Instance.IsInitialized)
-        {
-            int currentYear = LITFWorld.Instance.currentYearsPassed;
-            if (currentYear != _lastCheckedYear)
-            {
-                RLog.Msg($"[Improved Kelvin] year change of {_lastCheckedYear} to {currentYear}. Updating visual.");
-                UpdateKelvinState(currentYear, true);
-                _lastCheckedYear = currentYear;
-            }
-        } else { RLog.Error("[Improved Kelvin] error LITFWorld Instance is null.");  }
-    }
-
-    private void KelvinDumpConfig(KelvinConfig currentConfig)
-    {
-        RLog.Msg("------------------ Kelvin Config ------------------");
-        RLog.Msg($"stageName ={currentConfig.stageName}");
-        RLog.Msg($"minYear ={currentConfig.minYear}");
-        RLog.Msg($"headTexture ={currentConfig.headTexture}");
-        RLog.Msg($"tuxedoTexture ={currentConfig.tuxedoTexture}");
-        RLog.Msg($"hoddieTexture ={currentConfig.hoddieTexture}");
-        RLog.Msg($"hasBeard ={currentConfig.hasBeard}");
-        RLog.Msg($"hasHair ={currentConfig.hasHair}");
-        RLog.Msg($"armorType ={currentConfig.armorType.ToString()}");
-        RLog.Msg($"maxHealth ={currentConfig.maxHealth}");
-        RLog.Msg($"maxStamina ={currentConfig.maxStamina}");
-        RLog.Msg($"maxHeartRateStat ={currentConfig.maxHeartRateStat}");
-        RLog.Msg($"maxFullness ={currentConfig.maxFullness}");
-        RLog.Msg($"maxFear ={currentConfig.maxFear}");
-        RLog.Msg($"maxAnger ={currentConfig.maxAnger}");
-        RLog.Msg($"moveSpeedMultiplier ={currentConfig.moveSpeedMultiplier}");
-        RLog.Msg($"meleeWeaponDamage ={currentConfig.meleeWeaponDamage}");
-        RLog.Msg($"canCombat ={currentConfig.canCombat}");
-        RLog.Msg($"canUseWeapons ={currentConfig.canUseWeapons}");
-        RLog.Msg($"canUseCosmeticArmor ={currentConfig.canUseCosmeticArmor}");
-        RLog.Msg($"canRevive ={currentConfig.canRevive}");
-        RLog.Msg($"removeBehaviors ={currentConfig.removeBehaviors}");
-        RLog.Msg($"IsAbleToUseGoldenArmor ={currentConfig.IsAbleToUseGoldenArmor}");
-        RLog.Msg($"onlyKilledByPlayer ={currentConfig.onlyKilledByPlayer}");
-        RLog.Msg($"shotgunKnockbackTime ={currentConfig.shotgunKnockbackTime}");
-
-        RLog.Msg("------------------ Kelvin Config ----------Z-------");
-    }
-
-    private void KelvinDumpInfo()
-    {
-        RLog.Msg($"ROBBY STAT LIST {robby._staggeredAmount}");
-
-        for (int i = 0; i < robby._statsManager._statsManager.Stats.Count; i++)
-        {
-            RLog.Msg($"State name {i}: {robby._statsManager._statsManager.Stats[i].GetName()}");
-        }
-
+        _agingConfigs.Clear();
         try
         {
-            if (robby._vailGiftManager != null)
-                RLog.Msg($"_vailGiftManager.enabled: {robby._vailGiftManager.enabled}");
-            else
-                RLog.Msg("_vailGiftManager: NULL");
-            if (robby.GetWorldSimController() != null)
-                RLog.Msg($"GetWorldSimController().name: {robby.GetWorldSimController().name}");
-            else RLog.Msg("GetWorldSimController(): NULL");
-
-            if (robby._worldSimController != null)
-                for (int i = 0; i < robby.GetWorldSimController()._actions.Count; i++)
-                {
-                    RLog.Msg($"robby.GetWorldSimController()._actions[i].GetName() {i}: {robby.GetWorldSimController()._actions[i].GetName()}");
-                }
-
-            RLog.Msg($"AnimStateParameters: {robby.AnimStateParameters}");
-            if (robby._animator != null)
-                RLog.Msg($"robby._animator.name: {robby._animator.name}");
-            else
-                RLog.Msg("_animator: NULL");
-            RLog.Msg($"robby._animEvents.name: {robby._animEvents.name}");
-            for (int i = 0; i < robby._stateAnimatorSettings.Count; i++)
+            // Verifica se a primeira config existe (usando o novo nome)
+            if (Config.Stage1Threshold == null)
             {
-                RLog.Msg($"robby._stateAnimatorSettings._items[{i}]._state._name: {robby._stateAnimatorSettings._items[i]._state._name}");
+                RLog.Error("SetupKelvinConfig: Configs not ready (Stage1Threshold is null).");
+                return;
             }
-            RLog.Msg($"robby.CheckPlayerSentimentLevel(0): {robby.CheckPlayerSentimentLevel(0)}");
-            if (robby.ActorStimuli != null)
-                RLog.Msg($"robby.ActorStimuli.name: {robby.ActorStimuli.name}");
-            if (robby._stimuliGroups != null)
-                RLog.Msg($"robby._stimuliGroups.name: {robby._stimuliGroups.name}");
-            RLog.Msg($"robby.GetInventoryItemType(): {robby.GetInventoryItemType()}");
-            RLog.Msg($"robby._hasInventory: {robby._hasInventory}");
 
-            if (robby._inventoryManager != null)
+            // 1. YOUNG (STAGE 1)
+            _agingConfigs.Add(new KelvinConfig
             {
-                for (int i = 0; i < robby._inventoryManager._carryAttachments.Count; i++)
-                {
-                    RLog.Msg($"robby._inventoryManager._carryAttachments {i}: {robby._inventoryManager._carryAttachments[i].name}");
-                }
-            }
-            RLog.Msg($"speedFloatParam={robby._speedFrame}");
-            RLog.Msg($"_staggeredAmount: {robby._staggeredAmount}");
-            RLog.Msg($"_staggerLevel: {robby._staggerLevel}");
-            RLog.Msg($"_staggeredAmount: {robby._staggerPerHit}");
-            RLog.Msg($"_staggeredAmount: {robby._staggeredAmount}");
+                stageName = "Young",
+                headTexture = "RobbyHeadYoung1",
+                tuxedoTexture = "TuxedoJacketMesh",
+                hoddieTexture = "HoodieMesh",
+                armorType = KelvinArmorType.Military,
 
-            RLog.Msg($"_isFemale: {robby._isFemale}");
-            RLog.Msg($"_helicopterHeld: {robby._helicopterHeld}");
+                startingThreshold = Config.Stage1Threshold.Value,
+                hasBeard = Config.Stage1Beard.Value,
+                hasHair = Config.Stage1Hair.Value,
+                maxHealth = Config.Stage1Health.Value,
+                maxStamina = Config.Stage1Stamina.Value,
+                maxHeartRateStat = Config.Stage1HeartRate.Value,
+                maxFullness = Config.Stage1Fullness.Value,
+                maxFear = Config.Stage1Fear.Value,
+                maxAnger = Config.Stage1Anger.Value,
+                meleeWeaponDamage = Config.Stage1Dmg.Value,
+                moveSpeedMultiplier = Config.Stage1Speed.Value,
+                blockDamageMultiplier = Config.Stage1BlockMult.Value,
+                shotgunKnockbackTime = Config.Stage1Knockback.Value,
+                staggerLevel = (int)Config.Stage1StaggerLvl.Value,
+                staggerPerHit = Config.Stage1StaggerHit.Value,
+                canCombat = Config.Stage1Combat.Value,
+                canUseWeapons = Config.Stage1Weapons.Value,
+                canRevive = Config.Stage1Revive.Value,
+                removeBehaviors = Config.Stage1RemBehav.Value,
+                canUseCosmeticArmor = Config.Stage1Armor.Value,
+                onlyKilledByPlayer = Config.Stage1KillOnly.Value,
+                canBlockAttack = Config.Stage1CanBlock.Value
+            });
 
-            if (robby._healthSettings != null)
+            // 2. EXPERIENCED (STAGE 2)
+            _agingConfigs.Add(new KelvinConfig
             {
-                RLog.Msg($"_poisonFearRate: {robby._healthSettings._poisonFearRate}");
-                RLog.Msg($"_poisonHealthRate: {robby._healthSettings._poisonHealthRate}");
-                RLog.Msg($"_poisonEnergyRate: {robby._healthSettings._poisonEnergyRate}");
-                RLog.Msg($"_dyingHealthRecover: {robby._healthSettings._dyingHealthRecover}");
-                RLog.Msg($"_health: {robby._healthSettings._health}");
-                RLog.Msg($"_onlyKilledByPlayer: {robby._healthSettings._onlyKilledByPlayer}");
+                stageName = "Experienced",
+                headTexture = "RobbyHeadOld2",
+                tuxedoTexture = "RobbyTuxedo2",
+                hoddieTexture = "RobbyHoodie1",
+                armorType = KelvinArmorType.Military,
 
-            }
-            else RLog.Msg("_healthSettings: NULL");
+                startingThreshold = Config.Stage2Threshold.Value,
+                hasBeard = Config.Stage2Beard.Value,
+                hasHair = Config.Stage2Hair.Value,
+                maxHealth = Config.Stage2Health.Value,
+                maxStamina = Config.Stage2Stamina.Value,
+                maxHeartRateStat = Config.Stage2HeartRate.Value,
+                maxFullness = Config.Stage2Fullness.Value,
+                maxFear = Config.Stage2Fear.Value,
+                maxAnger = Config.Stage2Anger.Value,
+                meleeWeaponDamage = Config.Stage2Dmg.Value,
+                moveSpeedMultiplier = Config.Stage2Speed.Value,
+                blockDamageMultiplier = Config.Stage2BlockMult.Value,
+                shotgunKnockbackTime = Config.Stage2Knockback.Value,
+                staggerLevel = (int)Config.Stage2StaggerLvl.Value,
+                staggerPerHit = Config.Stage2StaggerHit.Value,
+                canCombat = Config.Stage2Combat.Value,
+                canUseWeapons = Config.Stage2Weapons.Value,
+                canRevive = Config.Stage2Revive.Value,
+                removeBehaviors = Config.Stage2RemBehav.Value,
+                canUseCosmeticArmor = Config.Stage2Armor.Value,
+                onlyKilledByPlayer = Config.Stage2KillOnly.Value,
+                canBlockAttack = Config.Stage2CanBlock.Value
+            });
 
-            RLog.Msg($"_dropEquipItemsOnDeath: {robby._dropEquipItemsOnDeath}");
-
-            if (robby._dismembermentController != null)
-                RLog.Msg($"_dismembermentController: {robby._dismembermentController.name}");
-            else
-                RLog.Msg("_dismembermentController: NULL");
-
-            RLog.Msg($"_dismemberedParts Count: {robby._dismemberedParts}");
-            RLog.Msg($"_damageEnabled: {robby._damageEnabled}");
-
-            if (robby._damageController != null)
-                RLog.Msg($"GetBlockDamageMultiplier: {robby._damageController.GetBlockDamageMultiplier()}");
-            else
-                RLog.Msg("_damageController: NULL");
-
-            RLog.Msg($"_shotgunKnockbackTime: {robby._shotgunKnockbackTime}");
-
-            if (robby._meleeWeapons != null)
+            // 3. VETERAN (STAGE 3)
+            _agingConfigs.Add(new KelvinConfig
             {
-                RLog.Msg($"Melee Weapons Count: {robby._meleeWeapons.Count}");
-                for (int i = 0; i < robby._meleeWeapons.Count; i++)
-                {
-                    if (robby._meleeWeapons[i] != null)
-                        RLog.Msg($"robby melee weapon {i}: ID={robby._meleeWeapons[i]._id}");
-                    else
-                        RLog.Msg($"robby melee weapon {i}: ITEM NULL");
-                }
-            }
-            else RLog.Msg("_meleeWeapons List: NULL");
+                stageName = "Veteran",
+                headTexture = "RobbyHeadOld3",
+                tuxedoTexture = "RobbyTuxedo2",
+                hoddieTexture = "RobbyHoodie1",
+                armorType = KelvinArmorType.Golden,
 
-            if (robby._statsManager != null && robby._statsManager._statsManager != null)
+                startingThreshold = Config.Stage3Threshold.Value,
+                hasBeard = Config.Stage3Beard.Value,
+                hasHair = Config.Stage3Hair.Value,
+                maxHealth = Config.Stage3Health.Value,
+                maxStamina = Config.Stage3Stamina.Value,
+                maxHeartRateStat = Config.Stage3HeartRate.Value,
+                maxFullness = Config.Stage3Fullness.Value,
+                maxFear = Config.Stage3Fear.Value,
+                maxAnger = Config.Stage3Anger.Value,
+                meleeWeaponDamage = Config.Stage3Dmg.Value,
+                moveSpeedMultiplier = Config.Stage3Speed.Value,
+                blockDamageMultiplier = Config.Stage3BlockMult.Value,
+                shotgunKnockbackTime = Config.Stage3Knockback.Value,
+                staggerLevel = (int)Config.Stage3StaggerLvl.Value,
+                staggerPerHit = Config.Stage3StaggerHit.Value,
+                canCombat = Config.Stage3Combat.Value,
+                canUseWeapons = Config.Stage3Weapons.Value,
+                canRevive = Config.Stage3Revive.Value,
+                removeBehaviors = Config.Stage3RemBehav.Value,
+                canUseCosmeticArmor = Config.Stage3Armor.Value,
+                onlyKilledByPlayer = Config.Stage3KillOnly.Value,
+                canBlockAttack = Config.Stage3CanBlock.Value
+            });
+
+            // 4. OLD (STAGE 4)
+            _agingConfigs.Add(new KelvinConfig
             {
-                var statsList = robby._statsManager._statsManager.Stats;
-                if (statsList != null)
-                {
-                    for (int i = 0; i < statsList.Count; i++)
-                    {
-                        if (statsList[i] != null)
-                            RLog.Msg($"State name {i}: {statsList[i].GetName()} Value: {statsList[i]._currentValue}");
-                    }
-                }
-            }
+                stageName = "Old",
+                headTexture = "RobbyHeadOld5",
+                tuxedoTexture = "RobbyTuxedo3",
+                hoddieTexture = "RobbyHoodie1",
+                armorType = KelvinArmorType.Golden,
+
+                startingThreshold = Config.Stage4Threshold.Value,
+                hasBeard = Config.Stage4Beard.Value,
+                hasHair = Config.Stage4Hair.Value,
+                maxHealth = Config.Stage4Health.Value,
+                maxStamina = Config.Stage4Stamina.Value,
+                maxHeartRateStat = Config.Stage4HeartRate.Value,
+                maxFullness = Config.Stage4Fullness.Value,
+                maxFear = Config.Stage4Fear.Value,
+                maxAnger = Config.Stage4Anger.Value,
+                meleeWeaponDamage = Config.Stage4Dmg.Value,
+                moveSpeedMultiplier = Config.Stage4Speed.Value,
+                blockDamageMultiplier = Config.Stage4BlockMult.Value,
+                shotgunKnockbackTime = Config.Stage4Knockback.Value,
+                staggerLevel = (int)Config.Stage4StaggerLvl.Value,
+                staggerPerHit = Config.Stage4StaggerHit.Value,
+                canCombat = Config.Stage4Combat.Value,
+                canUseWeapons = Config.Stage4Weapons.Value,
+                canRevive = Config.Stage4Revive.Value,
+                removeBehaviors = Config.Stage4RemBehav.Value,
+                canUseCosmeticArmor = Config.Stage4Armor.Value,
+                onlyKilledByPlayer = Config.Stage4KillOnly.Value,
+                canBlockAttack = Config.Stage4CanBlock.Value
+            });
         }
         catch (System.Exception e)
         {
-            RLog.Error($"[DEBUG F5] Erro ao printar stats: {e.Message}");
+            RLog.Error($"[Improved Kelvin] CRITICAL ERROR defining config: {e}");
+            if (_agingConfigs.Count == 0)
+            {
+                _agingConfigs.Add(new KelvinConfig { stageName = "Fallback", startingThreshold = 0, maxHealth = 100 });
+            }
+        }
+    }
+    public void HandleDeath()
+    {
+        if (robby.IsDead())
+        {
+            if (!_graveSpawned)
+            {
+                var gravePrefab = LITFUtils.SpawnPrefab(LITFGrave01Prefab.grave, robby.Position());
+                if (gravePrefab) gravePrefab.transform.Rotate(0f, 180f, 0f);
+
+                _graveSpawned = true;
+                RLog.Msg("[Improved Kelvin] Grave spawned.");
+            }
+
+            var visualRoot = robby.transform.Find("VisualRoot");
+            if (visualRoot != null) visualRoot.gameObject.SetActive(false);
+        }
+        else
+        {
+            _graveSpawned = false;
+        }
+    }
+
+    private void SetupWardrobe()
+    {
+        _wardrobe.Clear();
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "Default",
+            baseWeight = 10,
+            meshesToEnable = new List<string> { jacket, pants, boots, gloves }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "Pajamas",
+            baseWeight = 5,
+            meshesToEnable = new List<string> { pyjamasMesh, pyjamasBootsMesh, leftHand, rightHand }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "CasualHoodie",
+            baseWeight = 50,
+            meshesToEnable = new List<string> { hoddieMesh, pants, boots, leftHand, rightHand }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "ColdHoodie",
+            baseWeight = 50,
+            meshesToEnable = new List<string> { hoddieMesh, pants, boots, gloves }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "Priest",
+            baseWeight = 20,
+            meshesToEnable = new List<string> { priestOutfitShirt, priestOutfitPants, leftHand, rightHand, boots }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "Tuxedo",
+            baseWeight = 10,
+            meshesToEnable = new List<string> { tuxedoJacketMesh, tuxedoPantsMesh, tuxedoShoesMesh, gloves }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "Suit",
+            baseWeight = 10,
+            meshesToEnable = new List<string> { suitMesh, tuxedoPantsMesh, leftHand, rightHand }
+        });
+
+        _wardrobe.Add(new OutfitOption
+        {
+            name = "LeatherJacket",
+            baseWeight = 15,
+            meshesToEnable = new List<string> { leatherJacketMesh, leatherJacketUnderShirt, boots, leftHand, rightHand, sunglasses }
+        });
+    }
+
+    private void CheckOutfitChange()
+    {
+        if (LITFWorld.Instance == null || !LITFWorld.Instance.IsInitialized) return;
+
+        bool isNight = VailWorldSimulation.IsNight;
+        int currentDay = LITFWorld.Instance.currentDaysPassed;
+        string season = LITFWorld.Instance.currentSeasonName.ToLower();
+
+        if (currentDay == _lastDayCheck && isNight == _wasNight) return;
+        _lastDayCheck = currentDay;
+        _wasNight = isNight;
+
+        _cachedWeights.Clear();
+
+        foreach (var outfit in _wardrobe)
+        {
+            int weight = outfit.baseWeight;
+            if (isNight)
+            {
+                switch (outfit.name)
+                {
+                    case "Pajamas":
+                        weight += 80;
+                        if (season == "summer") weight -= 40;
+                        break;
+
+                    case "Tuxedo" or "LeatherJacket":
+                        weight = 0;
+                        break;
+                    default:
+                        weight = Mathf.Max(1, weight / 4);
+                        break;
+                }
+            }
+            else // day
+            {
+                if (outfit.name == "Pajamas") weight = 0;
+            }
+
+            // seasons weight calculation
+            switch(season)
+            {
+                case "winter":
+                    if (outfit.name == "ColdHoodie") weight += 70;
+                    if (outfit.name == "LeatherJacket") weight += 40;
+                    if (outfit.name == "Priest") weight -= 20;
+                    if (outfit.name == "CasualHoodie") weight += 60;
+                    if (outfit.name == "Default") weight += 40;
+                    if (outfit.name == "Suit") weight += 50;
+                    if (outfit.name == "Tuxedo") weight += 58;
+                    break;
+
+                case "summer":
+                    if (outfit.name == "ColdHoodie") weight -= 50;
+                    if (outfit.name == "LeatherJacket") weight -= 20;
+                    if (outfit.name == "Priest") weight += 30;
+                    if (outfit.name == "CasualHoodie") weight += 20;
+                    if (outfit.name == "Default") weight += 40;
+                    if (outfit.name == "Suit") weight -= 10;
+                    if (outfit.name == "Tuxedo") weight -= 30;
+                    break;
+
+                case "spring":
+                    if (outfit.name == "ColdHoodie") weight -= 40;
+                    if (outfit.name == "LeatherJacket") weight -= 15;
+                    if (outfit.name == "Priest") weight += 20;
+                    if (outfit.name == "CasualHoodie") weight += 15;
+                    if (outfit.name == "Default") weight += 40;
+                    if (outfit.name == "Suit") weight -= 10;
+                    if (outfit.name == "Tuxedo") weight -= 10;
+                    break;
+
+                case "fall" or "autumn":
+                    if (outfit.name == "ColdHoodie") weight += 20;
+                    if (outfit.name == "LeatherJacket") weight += 30;
+                    if (outfit.name == "Priest") weight += 20;
+                    if (outfit.name == "CasualHoodie") weight += 40;
+                    if (outfit.name == "Default") weight += 60;
+                    if (outfit.name == "Suit") weight += 30;
+                    if (outfit.name == "Tuxedo") weight += 40;
+                    break;
+            }
+
+            if (weight < 0) weight = 0;
+            _cachedWeights.Add(outfit, weight);
         }
 
-        RLog.Msg("=== [DEBUG F5] Fim do Dump ===");
+        OutfitOption selected = GetWeightedRandomOutfit(_cachedWeights);
+        if (selected != null && selected.name != _currentOutfitName) {
+            ApplyOutfit(selected);
+        }
+    }
 
+    private OutfitOption GetWeightedRandomOutfit(Dictionary<OutfitOption, int> weights)
+    {
+        int totalWeight = 0;
+        foreach (var w in weights.Values) totalWeight += w;
+
+        if (totalWeight <= 0)
+        {
+            foreach (var k in weights.Keys) return k;
+            return null;
+        }
+
+        int randomValue = UnityEngine.Random.Range(0, totalWeight);
+        int cursor = 0;
+
+        foreach (var entry in weights)
+        {
+            cursor += entry.Value;
+            if (randomValue < cursor)
+                return entry.Key;
+        }
+
+        return null;
+    }
+
+    private void ApplyOutfit(OutfitOption outfit)
+    {
+        RLog.Msg($"[ImprovedKelvin] Trocando roupa para: {outfit.name}");
+        _currentOutfitName = outfit.name;
+
+        string[] allMeshes = {
+            pyjamasBootsMesh, pyjamasMesh, leatherJacketMesh, leatherJacketUnderShirt, pants, boots, sunglasses,
+            tuxedoJacketMesh, tuxedoPantsMesh, tuxedoShoesMesh, priestOutfitShirt, hoddieMesh, suitMesh, jacket, 
+            mask
+        };
+
+        foreach (var m in allMeshes) ToggleActivateRobbyMesh(m, false);
+        foreach (var meshName in outfit.meshesToEnable) ToggleActivateRobbyMesh(meshName, true);
     }
 }
