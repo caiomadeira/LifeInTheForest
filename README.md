@@ -1,2 +1,2 @@
-# LifeInTheForest
-A Sons Of The Forest Mod.
+# [LITF] LifeInTheForest
+A collection of Sons Of The Forest Mod.
