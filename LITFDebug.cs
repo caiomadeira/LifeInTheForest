@@ -5,7 +5,7 @@ using Sons.Ai.Vail;
 namespace LifeInTheForest;
 public class LITFDebug
 {
-    public static bool isDebugActive = true;
+    public static bool isDebugActive = false;
 
     public static void KelvinDumpConfig(KelvinConfig currentConfig, bool agingConfigDone)
     {

@@ -147,14 +147,21 @@ public class LITFImprovedKelvin: MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F10))
             {
                 UpdateKelvinState(0, true);
-                RLog.Msg($"kelvin state 0.");
+                RLog.Msg($"kelvin state 0. young");
+            }
+
+            if (Input.GetKeyDown(KeyCode.F9))
+            {
+                UpdateKelvinState(1, true);
+                RLog.Msg($"kelvin state 2. veteran");
             }
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
                 //if (activateLITFKelvinWeaponSystem)
                 //    weaponSystem.LITFKelvinWeaponSystemUpdate();
-                HandleDeath();
+                UpdateKelvinState(3, true);
+                RLog.Msg($"kelvin state 3. old");
             }
         }
     }
@@ -271,15 +278,13 @@ public class LITFImprovedKelvin: MonoBehaviour
     }
     private void SetupKelvinKickAttack()
     {
-        if (currentConfig.canCombat)
+        //         if (currentConfig.canCombat && currentConfig.canUseWeapons)
+        if (currentConfig.canCombat && currentConfig.canUseWeapons)
         {
-            if (currentConfig.canUseWeapons)
+            if (robby._meleeWeapons != null)
             {
-                if (robby._meleeWeapons != null && robby._meleeWeapons.Count > 0)
-                {
-                    kickWeapon = robby._meleeWeapons[0]._gameObject.GetComponent<Sons.Gameplay.MeleeWeapon>();
-                    if (kickWeapon != null) kickWeapon._damage = currentConfig.meleeWeaponDamage;
-                }
+                kickWeapon = robby._meleeWeapons[0]._gameObject.GetComponent<Sons.Gameplay.MeleeWeapon>();
+                if (kickWeapon != null) kickWeapon._damage = currentConfig.meleeWeaponDamage;
             }
         }
     }
@@ -438,8 +443,8 @@ public class LITFImprovedKelvin: MonoBehaviour
             {
                 stageName = "Young",
                 headTexture = "RobbyHeadYoung1",
-                tuxedoTexture = "TuxedoJacketMesh",
-                hoddieTexture = "HoodieMesh",
+                tuxedoTexture = "RobbyTuxedo1",
+                hoddieTexture = "RobbyHoodie1",
                 armorType = KelvinArmorType.Military,
 
                 startingThreshold = Config.Stage1Threshold.Value,

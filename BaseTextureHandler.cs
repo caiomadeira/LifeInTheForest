@@ -1,11 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Il2CppInterop.Runtime.InteropTypes;
+﻿using Il2CppInterop.Runtime.InteropTypes;
+using RedLoader;
 using RedLoader.Utils;
 using Sons.Ai.Vail;
 using SonsSdk;
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace LifeInTheForest;
@@ -39,6 +40,11 @@ public class BaseTextureHandler
         if (!TexturesPath.DirectoryExists())
         {
             Directory.CreateDirectory(TexturesPath);
+            RLog.Msg($"[TextureHandler] Pasta criada em: {TexturesPath}");
+        }
+        else
+        {
+            RLog.Msg($"[TextureHandler] Diretório de texturas detectado: {TexturesPath}");
         }
     }
 
@@ -60,6 +66,13 @@ public class BaseTextureHandler
     public void SetTexture(string textureName, bool forceReload = false)
     {
         string text = ((textureName == "Default") ? null : string.Concat(TexturesPath / textureName, ".png"));
+        if (!File.Exists(text))
+        {
+            RLog.Error($"[TextureHandler] FALHA: Arquivo não encontrado!");
+            RLog.Error($"[TextureHandler] Procurando por: {text}");
+            RLog.Error($"[TextureHandler] Verifique se o nome do arquivo é exatamente '{textureName}.png'");
+            return; 
+        }
         if ((forceReload || !(text == CurrentTexturePath)) && File.Exists(text))
         {
             CurrentTexturePath = text;
