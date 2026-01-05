@@ -9,7 +9,7 @@ Above you can see the mods present in this repo.
 ### Part of the **"Life In The Forest"** overhaul series.
 
 **LITF - Improved Kelvin** transforms your favorite companion from a static helper into a dynamic, evolving survivor. This mod overhauls Kelvin's entire progression, introducing a full lifecycle with dynamic aging, RPG-like stat progression, an intelligent visual wardrobe, and enhanced combat capabilities.
-
+![ltfimprovedkelvincover.png](https://github.com/caiomadeira/LifeInTheForest/blob/main/assets/improvedkelvincover.png)
 This mod is designed to bring more depth to the gameplay, especially focusing on enhancing the **post-game experience**, making Kelvin feel like a true partner in your long-term survival.
 
 ---
