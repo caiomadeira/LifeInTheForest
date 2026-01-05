@@ -54,9 +54,9 @@ You can fully customize your experience. Tweak aging speed, granular settings pe
 
 We are committed to improving LITF - Improved Kelvin. Here is what we are working on for future updates:
 
-1.  ** Advanced Weapon System (WIP):** Expanding Kelvin's arsenal beyond kicks. Training him to use basic weapons and firearms.
-2.  ** New Clothes & Meshes (WIP):** Integrating completely new, custom clothing assets and meshes for more variety.
-3.  ** Notebook Status Integration:** The ability to see Kelvin's current stats, age stage, and condition directly through the in-game note pad used to communicate with him.
+1.  **Advanced Weapon System (WIP):** Expanding Kelvin's arsenal beyond kicks. Training him to use basic weapons and firearms.
+2.  **New Clothes & Meshes (WIP):** Integrating completely new, custom clothing assets and meshes for more variety.
+3.  **Notebook Status Integration:** The ability to see Kelvin's current stats, age stage, and condition directly through the in-game note pad used to communicate with him.
 
 ---
 
@@ -65,4 +65,3 @@ We are committed to improving LITF - Improved Kelvin. Here is what we are workin
 * [RedLoader](https://github.com/ToniMacaroni/RedLoader)
 * [SonsSdk](https://github.com/ToniMacaroni/SonsSdk)
 
----
