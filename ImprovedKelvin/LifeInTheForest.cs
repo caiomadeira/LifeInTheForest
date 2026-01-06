@@ -43,14 +43,14 @@ public class LifeInTheForest : SonsMod
 
     private void DebugUI()
     {
-        GUI.Box(new Rect(10, 10, 200, 400), "SPAWN CARL");
+        //GUI.Box(new Rect(10, 10, 200, 400), "SPAWN CARL");
 
-        if (GUI.Button(new Rect(20, 70, 180, 20), "Spawn Cannibal"))
-        {
-            var pos = Camera.main.transform.position + (Camera.main.transform.forward * 10);
-            ActorTools.Spawn(VailActorTypeId.Carl, pos);
-            RLog.Msg("Cannibal Spawnado!");
-        }
+        //if (GUI.Button(new Rect(20, 70, 180, 20), "Spawn Cannibal"))
+        //{
+        //    var pos = Camera.main.transform.position + (Camera.main.transform.forward * 10);
+        //    ActorTools.Spawn(VailActorTypeId.Carl, pos);
+        //    RLog.Msg("Cannibal Spawnado!");
+        //}
     }
     protected override void OnGameStart() {  }
 }
