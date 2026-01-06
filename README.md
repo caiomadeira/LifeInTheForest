@@ -9,7 +9,7 @@ Above you can see the mods present in this repo.
 ### Part of the **"Life In The Forest"** overhaul series.
 
 **LITF - Improved Kelvin** transforms your favorite companion from a static helper into a dynamic, evolving survivor. This mod overhauls Kelvin's entire progression, introducing a full lifecycle with dynamic aging, RPG-like stat progression, an intelligent visual wardrobe, and enhanced combat capabilities.
-
+![ltfimprovedkelvincover.png](https://github.com/caiomadeira/LifeInTheForest/blob/main/assets/improvedkelvincover.png)
 This mod is designed to bring more depth to the gameplay, especially focusing on enhancing the **post-game experience**, making Kelvin feel like a true partner in your long-term survival.
 
 ---
@@ -54,9 +54,9 @@ You can fully customize your experience. Tweak aging speed, granular settings pe
 
 We are committed to improving LITF - Improved Kelvin. Here is what we are working on for future updates:
 
-1.  ** Advanced Weapon System (WIP):** Expanding Kelvin's arsenal beyond kicks. Training him to use basic weapons and firearms.
-2.  ** New Clothes & Meshes (WIP):** Integrating completely new, custom clothing assets and meshes for more variety.
-3.  ** Notebook Status Integration:** The ability to see Kelvin's current stats, age stage, and condition directly through the in-game note pad used to communicate with him.
+1.  **Advanced Weapon System (WIP):** Expanding Kelvin's arsenal beyond kicks. Training him to use basic weapons and firearms.
+2.  **New Clothes & Meshes (WIP):** Integrating completely new, custom clothing assets and meshes for more variety.
+3.  **Notebook Status Integration:** The ability to see Kelvin's current stats, age stage, and condition directly through the in-game note pad used to communicate with him.
 
 ---
 
@@ -65,4 +65,3 @@ We are committed to improving LITF - Improved Kelvin. Here is what we are workin
 * [RedLoader](https://github.com/ToniMacaroni/RedLoader)
 * [SonsSdk](https://github.com/ToniMacaroni/SonsSdk)
 
----
