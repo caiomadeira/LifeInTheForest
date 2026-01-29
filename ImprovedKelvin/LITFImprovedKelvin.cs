@@ -1,6 +1,7 @@
 ﻿
 using RedLoader;
 using Sons.Ai.Vail;
+using Sons.Gameplay;
 using Sons.StatSystem;
 using UnityEngine;
 namespace LifeInTheForest;
@@ -160,8 +161,13 @@ public class LITFImprovedKelvin: MonoBehaviour
             {
                 //if (activateLITFKelvinWeaponSystem)
                 //    weaponSystem.LITFKelvinWeaponSystemUpdate();
-                UpdateKelvinState(3, true);
-                RLog.Msg($"kelvin state 3. old");
+                //UpdateKelvinState(3, true);
+                //RLog.Msg($"kelvin state 3. old");
+                var visuals = robby.gameObject.transform.Find(visualRoot);
+                for (int i = 0; i < visuals.childCount; i++)
+                {
+                    RLog.Msg($"Obj: {visuals.gameObject.name[i]}");
+                }
             }
         }
     }
@@ -405,7 +411,9 @@ public class LITFImprovedKelvin: MonoBehaviour
         {
             case KelvinArmorType.Golden:
                 if (currentConfig.IsAbleToUseGoldenArmor && golden)
+                {
                     golden.gameObject.SetActive(true);
+                }
                 break;
 
             case KelvinArmorType.Military:
